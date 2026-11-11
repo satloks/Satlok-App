@@ -480,7 +480,7 @@ input:focus-visible,select:focus-visible{outline-offset:0}
 .apin #frs{height:36px;font-size:13.5px}
 </style>
 <style>
-#fbc{margin:0 0 10px}html.guest #bn div{grid-template-columns:repeat(3,1fr)}html.guest #pg-me,html.guest #pg-count,html.guest #bnb button[data-p="me"],html.guest #bnb button[data-p="count"],html.guest #sh h3[data-t="data"],html.guest #sh .dtl,html.guest #sh #cla,html.guest #appv,html.guest #adm{display:none!important}
+#fbc{margin:0 0 10px}html.guest #bn div{grid-template-columns:repeat(3,1fr)}html.guest #wop{display:none!important}html.guest #pg-me,html.guest #pg-count,html.guest #bnb button[data-p="me"],html.guest #bnb button[data-p="count"],html.guest #sh h3[data-t="data"],html.guest #sh .dtl,html.guest #sh #cla,html.guest #appv,html.guest #adm{display:none!important}
 #pg-me [hidden]{display:none!important}.phd.ro #av2{cursor:default;pointer-events:none}.phd.ro #av2 i{display:none!important}
 .fbl{display:flex;flex-direction:column;align-items:center;text-align:center;gap:12px;padding:30px 18px 22px;background:var(--card);border:1px solid var(--bd);border-radius:16px}.fbl .lg{width:64px;height:64px;border-radius:50%;background:var(--ac);color:var(--on);display:grid;place-items:center}.fbl .lg svg{width:30px;height:30px}.fbl h2{margin:0;font-size:19px}.fbl .btn{width:100%;margin:4px 0 0}.fbl .pnt{margin:0!important}
 #fbu{margin-top:12px}.fbn{display:flex;flex-direction:column;gap:10px;align-items:center;text-align:center;padding:16px;margin-bottom:10px;background:var(--card);border:1px solid var(--bd);border-radius:14px}.fbn p{margin:0;font-size:13.5px;color:var(--mu)}.fbn .btn{width:100%;margin:0;text-decoration:none;display:flex;justify-content:center}#adm .apin a.btn{text-decoration:none;display:flex;justify-content:center}#fbu .btn{margin:0 0 8px;gap:10px}
@@ -509,6 +509,7 @@ input:focus-visible,select:focus-visible{outline-offset:0}
 .vm .vb i{display:block;width:3px;height:100%;border-radius:2px;background:currentColor;transform:scaleY(.3);animation:vsb 1s ease-in-out infinite}
 .vm .vb i:nth-child(2){animation-delay:.15s}.vm .vb i:nth-child(3){animation-delay:.3s}.vm .vb i:nth-child(4){animation-delay:.45s}
 .vsw.vf .vm{right:48px}
+.pks .vm{right:20px}
 .vsw.vf .sx{right:90px}
 .vsw.vf input{padding-right:92px!important}
 .vsw.vf input:not(:placeholder-shown){padding-right:136px!important}
@@ -1530,6 +1531,7 @@ const D=S.map((x,i)=>[100+i,"SA न्यूज़ "+x[1],"SA News "+x[0],0,i]).
 const T={hi:{crd:"सारी गिनती शून्य हो गई",ttl:"सतलोक सोशियल ऐप",sub:"सभी चैनल, एक जगह",home:"होम",states:"राज्य",cnt:"गिनती",app:"ऐप",me:"प्रोफ़ाइल",q:"चैनल या राज्य खोजें",chn:"चैनल",none:"कोई चैनल नहीं मिला",st:"सभी राज्य",co:"सभी देश",all:"सभी",clr:"फ़िल्टर हटाएँ",my:"मेरा राज्य",pick:"अपना राज्य चुनें",pickd:"राज्य या केंद्र शासित प्रदेश दबाएँ, उसके चैनल खुल जाएँगे।",sq:"राज्य खोजें",ch:"मेरी गिनती",chs:"चैनल खोलें और + दबाकर गिनती दर्ज करें।",tot:"कुल गिनती",cdd:"चैनल गिने गए",pdt:"व्यक्तिगत जानकारी",ed:"बदलाव करें",cnl:"रद्द करें",lct:"स्थान",pen:"बाकी",ctd:"गिने हुए",rs:"सारी गिनती शून्य करें",sure:"पक्का? फिर से दबाएँ",nm:"नाम",ph:"मोबाइल नंबर",em:"ईमेल",co2:"देश",st2:"राज्य",ci:"शहर / गाँव",sv:"सेव करें",svd:"प्रोफ़ाइल सेव हो गई",pdd:"प्रोफ़ाइल की जानकारी हटा दी गई",dcl:"सारा डेटा हटा दिया गया",cfp:"प्रोफ़ाइल की जानकारी हटाएँ?",cfa:"सारा सेव किया डेटा (गिनती और प्रोफ़ाइल) हटाएँ?",cfr:"सारी गिनती शून्य करें?",rn:"कृपया अपना नाम भरें",ie:"सही ईमेल भरें",rq:"कृपया लाल निशान वाली जानकारी ठीक करें",pn:"यह जानकारी सिर्फ़ इसी फ़ोन में रहती है, कहीं भेजी नहीं जाती।",del:"प्रोफ़ाइल हटाएँ",gu:"अतिथि",pn0:"अपनी जानकारी भरें",shr:"शेयर करें",cpl:"लिंक कॉपी करें",cpd:"लिंक कॉपी हो गया",gp:"Google Play पर पाएँ",scan:"इंस्टॉल करने के लिए स्कैन करें",appn:"संत रामपाल जी महाराज ऐप",appd:"Google Play पर मुफ़्त",set:"सेटिंग्स",hl:"भाषा",ht:"थीम",auto:"ऑटो",light:"लाइट",dark:"डार्क",mc:"मेरी कुल गिनती",gs:"सभी चैनलों में खोज",sel:"चुनें",more:"साझा करें",shw:"यह ऐप शेयर करें",pf:"प्लेटफ़ॉर्म",plat:"प्लेटफ़ॉर्म",open:"खोलें",flt:"फ़िल्टर",show:"चैनल दिखाएँ",menu:"मेनू",wop:"वेब ऐप में खोलें",wsc:"किसी भी फ़ोन से QR स्कैन करके यह ऐप वेब पर खोलें",web:"रामपाल जी महाराज वेबसाइट",data:"डेटा",clrall:"सारा सेव किया डेटा मिटाएँ",bk:"बैकअप कॉपी करें",bkrs:"बैकअप वापस लाएँ",bkd:"बैकअप कॉपी हो गया",rsp:"बैकअप कोड यहाँ पेस्ट करें",rsd:"डेटा वापस आ गया",rse:"बैकअप कोड सही नहीं है"},
 en:{crd:"All counts reset",ttl:"Satlok Social App",sub:"All channels, one place",home:"Home",states:"States",cnt:"Count",app:"App",me:"Profile",q:"Search channel or state",chn:"channels",none:"No channels found",st:"All states",co:"All countries",all:"All",clr:"Clear filters",my:"My state",pick:"Pick your state",pickd:"Tap a state or union territory to see its channels.",sq:"Search states",ch:"My count",chs:"Open a channel and tap + to add to your count.",tot:"Total count",cdd:"channels counted",pdt:"Personal details",ed:"Edit profile",cnl:"Cancel",lct:"Location",pen:"Pending",ctd:"Counted",rs:"Reset all counts",sure:"Sure? Tap again",nm:"Name",ph:"Mobile number",em:"Email",co2:"Country",st2:"State",ci:"City / village",sv:"Save",svd:"Profile saved",pdd:"Profile details deleted",dcl:"All data cleared",cfp:"Delete your profile details?",cfa:"Delete all saved data (counts and profile)?",cfr:"Reset all counts to zero?",rn:"Please enter your name",ie:"Enter a valid email address",rq:"Please correct the highlighted fields",pn:"This information stays on this phone only and is never sent anywhere.",del:"Delete profile",gu:"Guest",pn0:"Fill in your details",shr:"Share",cpl:"Copy link",cpd:"Link copied",gp:"Get it on Google Play",scan:"Scan to install",appn:"Sant Rampal Ji Maharaj app",appd:"Free on Google Play",set:"Settings",hl:"Language",ht:"Theme",auto:"Auto",light:"Light",dark:"Dark",mc:"My total count",gs:"Searching all channels",sel:"Select",more:"Share",shw:"Share this app",pf:"Platform",plat:"Platforms",open:"Open",flt:"Filters",show:"Show channels",menu:"Menu",wop:"Open in web app",wsc:"Scan the QR from any phone to open this app on the web",web:"Rampal Ji Maharaj website",data:"Data",clrall:"Clear all saved data",bk:"Copy backup",bkrs:"Restore backup",bkd:"Backup copied",rsp:"Paste your backup code",rsd:"Data restored",rse:"Invalid backup code"}};
 Object.assign(T,{"as": {"home": "ঘৰ", "states": "ৰাজ্য", "cnt": "গণনা", "me": "মই", "q": "চেনেলৰ নাম সন্ধান কৰক…", "hl": "ভাষা"}, "bn": {"home": "হোম", "states": "রাজ্য", "cnt": "গণনা", "me": "আমি", "q": "চ্যানেলের নাম খুঁজুন…", "hl": "ভাষা"}, "brx": {"home": "नखर", "states": "राइज्यफोर", "cnt": "हिसाब", "me": "आं", "q": "चैनेलनि मुं बिलाइ…", "hl": "राव"}, "doi": {"home": "घर", "states": "राज्य", "cnt": "गिनतरी", "me": "मैं", "q": "चैनल दा नां खोजो…", "hl": "भाशा"}, "gu": {"home": "હોમ", "states": "રાજ્યો", "cnt": "ગણતરી", "me": "હું", "q": "ચેનલનું નામ શોધો…", "hl": "ભાષા"}, "kn": {"home": "ಮುಖಪುಟ", "states": "ರಾಜ್ಯಗಳು", "cnt": "ಎಣಿಕೆ", "me": "ನಾನು", "q": "ಚಾನಲ್ ಹೆಸರು ಹುಡುಕಿ…", "hl": "ಭಾಷೆ"}, "ks": {"home": "ہوم", "states": "ریاستھ", "cnt": "گنتی", "me": "میں", "q": "چینل کُن ناوُ لٔٹو…", "hl": "زبان"}, "kok": {"home": "घर", "states": "राज्यां", "cnt": "मोजणी", "me": "हांव", "q": "चॅनेलाचें नांव सोदचें…", "hl": "भास"}, "mai": {"home": "घर", "states": "राज्य", "cnt": "गिनती", "me": "हम", "q": "चैनलक नाम खोजू…", "hl": "भाषा"}, "ml": {"home": "ഹോം", "states": "സംസ്ഥാനങ്ങൾ", "cnt": "എണ്ണം", "me": "ഞാൻ", "q": "ചാനലിന്റെ പേര് തിരയുക…", "hl": "ഭാഷ"}, "mni": {"home": "হোম", "states": "ৰাজ্যশিং", "cnt": "গণনা", "me": "ঐ", "q": "চেনেলগী মিং থীবা…", "hl": "লোন্"}, "mr": {"home": "मुख्यपृष्ठ", "states": "राज्ये", "cnt": "मोजणी", "me": "मी", "q": "चॅनेलचे नाव शोधा…", "hl": "भाषा"}, "ne": {"home": "गृहपृष्ठ", "states": "राज्यहरू", "cnt": "गणना", "me": "म", "q": "च्यानलको नाम खोज्नुहोस्…", "hl": "भाषा"}, "or": {"home": "ହୋମ୍", "states": "ରାଜ୍ୟ", "cnt": "ଗଣନା", "me": "ମୁଁ", "q": "ଚ୍ୟାନେଲ ନାମ ଖୋଜନ୍ତୁ…", "hl": "ଭାଷା"}, "pa": {"home": "ਹੋਮ", "states": "ਰਾਜ", "cnt": "ਗਿਣਤੀ", "me": "ਮੈਂ", "q": "ਚੈਨਲ ਦਾ ਨਾਂ ਖੋਜੋ…", "hl": "ਭਾਸ਼ਾ"}, "sa": {"home": "गृहम्", "states": "राज्यानि", "cnt": "गणना", "me": "अहम्", "q": "वाहिन्याः नाम अन्विष्यताम्…", "hl": "भाषा"}, "sat": {"home": "ᱚᱲᱟᱜ", "states": "ᱨᱟᱡᱽᱭ", "cnt": "ᱞᱮᱠᱷᱟ", "me": "ᱤᱧ", "q": "ᱪᱮᱱᱮᱞ ᱧᱩᱛᱩᱢ ᱥᱮᱸᱫᱽᱨᱟ…", "hl": "ᱵᱷᱟᱥᱟ"}, "sd": {"home": "گھر", "states": "رياستون", "cnt": "ڳڻپ", "me": "مان", "q": "چينل جو نالو ڳوليو…", "hl": "ٻولي"}, "ta": {"home": "முகப்பு", "states": "மாநிலங்கள்", "cnt": "எண்ணிக்கை", "me": "நான்", "q": "சேனல் பெயரைத் தேடு…", "hl": "மொழி"}, "te": {"home": "హోమ్", "states": "రాష్ట్రాలు", "cnt": "లెక్క", "me": "నేను", "q": "ఛానల్ పేరు వెతకండి…", "hl": "భాష"}, "ur": {"home": "ہوم", "states": "ریاستیں", "cnt": "گنتی", "me": "میں", "q": "چینل کا نام تلاش کریں…", "hl": "زبان"}});
+/*lang-fill*/(function(){const X={"bn": {"app": "অ্যাপ", "chn": "চ্যানেল", "none": "কোনো চ্যানেল পাওয়া যায়নি", "st": "সব রাজ্য", "co": "সব দেশ", "flt": "ফিল্টার", "show": "দেখান", "clr": "ফিল্টার সরান", "set": "সেটিংস", "ht": "থিম", "auto": "অটো", "light": "লাইট", "dark": "ডার্ক", "shw": "অ্যাপ শেয়ার করুন", "cpl": "লিংক কপি করুন", "cpd": "লিংক কপি হয়েছে", "scan": "স্ক্যান করুন", "ins": "ইনস্টল", "insT": "অ্যাপ ইনস্টল করুন", "insD": "ফোনের হোম স্ক্রিনে অ্যাপ যোগ করুন"}, "as": {"app": "এপ", "chn": "চেনেল", "none": "কোনো চেনেল পোৱা নগ'ল", "st": "সকলো ৰাজ্য", "co": "সকলো দেশ", "flt": "ফিল্টাৰ", "show": "দেখুৱাওক", "clr": "ফিল্টাৰ আঁতৰাওক", "set": "ছেটিংছ", "ht": "থিম", "auto": "অটো", "light": "লাইট", "dark": "ডাৰ্ক", "shw": "এপ শ্বেয়াৰ কৰক", "cpl": "লিংক কপি কৰক", "cpd": "লিংক কপি হ'ল", "scan": "স্কেন কৰক", "ins": "ইনষ্টল", "insT": "এপ ইনষ্টল কৰক", "insD": "ফোনৰ হোম স্ক্ৰীনত এপ যোগ কৰক"}, "gu": {"app": "એપ", "chn": "ચેનલ", "none": "કોઈ ચેનલ મળી નથી", "st": "બધા રાજ્યો", "co": "બધા દેશ", "flt": "ફિલ્ટર", "show": "બતાવો", "clr": "ફિલ્ટર હટાવો", "set": "સેટિંગ્સ", "ht": "થીમ", "auto": "ઓટો", "light": "લાઇટ", "dark": "ડાર્ક", "shw": "એપ શેર કરો", "cpl": "લિંક કૉપિ કરો", "cpd": "લિંક કૉપિ થઈ", "scan": "સ્કેન કરો", "ins": "ઇન્સ્ટૉલ", "insT": "એપ ઇન્સ્ટૉલ કરો", "insD": "ફોનની હોમ સ્ક્રીન પર એપ ઉમેરો"}, "kn": {"app": "ಆ್ಯಪ್", "chn": "ಚಾನಲ್‌ಗಳು", "none": "ಯಾವುದೇ ಚಾನಲ್ ಸಿಗಲಿಲ್ಲ", "st": "ಎಲ್ಲಾ ರಾಜ್ಯಗಳು", "co": "ಎಲ್ಲಾ ದೇಶಗಳು", "flt": "ಫಿಲ್ಟರ್", "show": "ತೋರಿಸಿ", "clr": "ಫಿಲ್ಟರ್ ತೆಗೆಯಿರಿ", "set": "ಸೆಟ್ಟಿಂಗ್‌ಗಳು", "ht": "ಥೀಮ್", "auto": "ಆಟೋ", "light": "ಲೈಟ್", "dark": "ಡಾರ್ಕ್", "shw": "ಆ್ಯಪ್ ಹಂಚಿಕೊಳ್ಳಿ", "cpl": "ಲಿಂಕ್ ನಕಲಿಸಿ", "cpd": "ಲಿಂಕ್ ನಕಲಾಗಿದೆ", "scan": "ಸ್ಕ್ಯಾನ್ ಮಾಡಿ", "ins": "ಇನ್‌ಸ್ಟಾಲ್", "insT": "ಆ್ಯಪ್ ಇನ್‌ಸ್ಟಾಲ್ ಮಾಡಿ", "insD": "ಫೋನ್‌ನ ಹೋಮ್ ಸ್ಕ್ರೀನ್‌ಗೆ ಆ್ಯಪ್ ಸೇರಿಸಿ"}, "ml": {"app": "ആപ്പ്", "chn": "ചാനലുകൾ", "none": "ചാനലുകളൊന്നും കണ്ടെത്തിയില്ല", "st": "എല്ലാ സംസ്ഥാനങ്ങളും", "co": "എല്ലാ രാജ്യങ്ങളും", "flt": "ഫിൽട്ടർ", "show": "കാണിക്കുക", "clr": "ഫിൽട്ടർ നീക്കുക", "set": "ക്രമീകരണങ്ങൾ", "ht": "തീം", "auto": "ഓട്ടോ", "light": "ലൈറ്റ്", "dark": "ഡാർക്ക്", "shw": "ആപ്പ് പങ്കിടുക", "cpl": "ലിങ്ക് പകർത്തുക", "cpd": "ലിങ്ക് പകർത്തി", "scan": "സ്കാൻ ചെയ്യുക", "ins": "ഇൻസ്റ്റാൾ", "insT": "ആപ്പ് ഇൻസ്റ്റാൾ ചെയ്യുക", "insD": "ഫോണിന്റെ ഹോം സ്ക്രീനിൽ ആപ്പ് ചേർക്കുക"}, "mr": {"app": "ॲप", "chn": "चॅनेल", "none": "एकही चॅनेल सापडले नाही", "st": "सर्व राज्ये", "co": "सर्व देश", "flt": "फिल्टर", "show": "दाखवा", "clr": "फिल्टर काढा", "set": "सेटिंग्ज", "ht": "थीम", "auto": "ऑटो", "light": "लाइट", "dark": "डार्क", "shw": "ॲप शेअर करा", "cpl": "लिंक कॉपी करा", "cpd": "लिंक कॉपी झाली", "scan": "स्कॅन करा", "ins": "इन्स्टॉल", "insT": "ॲप इन्स्टॉल करा", "insD": "फोनच्या होम स्क्रीनवर ॲप जोडा"}, "ne": {"app": "एप", "chn": "च्यानलहरू", "none": "कुनै च्यानल फेला परेन", "st": "सबै राज्य", "co": "सबै देश", "flt": "फिल्टर", "show": "देखाउनुहोस्", "clr": "फिल्टर हटाउनुहोस्", "set": "सेटिङ", "ht": "थिम", "auto": "अटो", "light": "लाइट", "dark": "डार्क", "shw": "एप सेयर गर्नुहोस्", "cpl": "लिङ्क कपी गर्नुहोस्", "cpd": "लिङ्क कपी भयो", "scan": "स्क्यान गर्नुहोस्", "ins": "इन्स्टल", "insT": "एप इन्स्टल गर्नुहोस्", "insD": "फोनको होम स्क्रिनमा एप थप्नुहोस्"}, "or": {"app": "ଆପ୍", "chn": "ଚ୍ୟାନେଲ", "none": "କୌଣସି ଚ୍ୟାନେଲ ମିଳିଲା ନାହିଁ", "st": "ସମସ୍ତ ରାଜ୍ୟ", "co": "ସମସ୍ତ ଦେଶ", "flt": "ଫିଲ୍ଟର", "show": "ଦେଖାନ୍ତୁ", "clr": "ଫିଲ୍ଟର ହଟାନ୍ତୁ", "set": "ସେଟିଂସ୍", "ht": "ଥିମ୍", "auto": "ଅଟୋ", "light": "ଲାଇଟ୍", "dark": "ଡାର୍କ", "shw": "ଆପ୍ ସେୟାର୍ କରନ୍ତୁ", "cpl": "ଲିଙ୍କ୍ କପି କରନ୍ତୁ", "cpd": "ଲିଙ୍କ୍ କପି ହେଲା", "scan": "ସ୍କାନ୍ କରନ୍ତୁ", "ins": "ଇନ୍‌ଷ୍ଟଲ୍", "insT": "ଆପ୍ ଇନ୍‌ଷ୍ଟଲ୍ କରନ୍ତୁ", "insD": "ଫୋନର ହୋମ୍ ସ୍କ୍ରିନ୍‌ରେ ଆପ୍ ଯୋଡ଼ନ୍ତୁ"}, "pa": {"app": "ਐਪ", "chn": "ਚੈਨਲ", "none": "ਕੋਈ ਚੈਨਲ ਨਹੀਂ ਮਿਲਿਆ", "st": "ਸਾਰੇ ਰਾਜ", "co": "ਸਾਰੇ ਦੇਸ਼", "flt": "ਫਿਲਟਰ", "show": "ਦਿਖਾਓ", "clr": "ਫਿਲਟਰ ਹਟਾਓ", "set": "ਸੈਟਿੰਗਾਂ", "ht": "ਥੀਮ", "auto": "ਆਟੋ", "light": "ਲਾਈਟ", "dark": "ਡਾਰਕ", "shw": "ਐਪ ਸਾਂਝੀ ਕਰੋ", "cpl": "ਲਿੰਕ ਕਾਪੀ ਕਰੋ", "cpd": "ਲਿੰਕ ਕਾਪੀ ਹੋ ਗਿਆ", "scan": "ਸਕੈਨ ਕਰੋ", "ins": "ਇੰਸਟਾਲ", "insT": "ਐਪ ਇੰਸਟਾਲ ਕਰੋ", "insD": "ਫ਼ੋਨ ਦੀ ਹੋਮ ਸਕ੍ਰੀਨ 'ਤੇ ਐਪ ਜੋੜੋ"}, "ta": {"app": "ஆப்", "chn": "சேனல்கள்", "none": "சேனல்கள் எதுவும் கிடைக்கவில்லை", "st": "அனைத்து மாநிலங்கள்", "co": "அனைத்து நாடுகள்", "flt": "வடிகட்டி", "show": "காட்டு", "clr": "வடிகட்டியை நீக்கு", "set": "அமைப்புகள்", "ht": "தீம்", "auto": "தானியங்கி", "light": "ஒளி", "dark": "இருள்", "shw": "ஆப்பைப் பகிர்", "cpl": "இணைப்பை நகலெடு", "cpd": "இணைப்பு நகலெடுக்கப்பட்டது", "scan": "ஸ்கேன் செய்", "ins": "நிறுவு", "insT": "ஆப்பை நிறுவுங்கள்", "insD": "தொலைபேசியின் முகப்புத் திரையில் ஆப்பைச் சேர்க்கவும்"}, "te": {"app": "యాప్", "chn": "ఛానళ్లు", "none": "ఛానళ్లు ఏవీ దొరకలేదు", "st": "అన్ని రాష్ట్రాలు", "co": "అన్ని దేశాలు", "flt": "ఫిల్టర్", "show": "చూపించు", "clr": "ఫిల్టర్ తొలగించు", "set": "సెట్టింగ్‌లు", "ht": "థీమ్", "auto": "ఆటో", "light": "లైట్", "dark": "డార్క్", "shw": "యాప్ షేర్ చేయండి", "cpl": "లింక్ కాపీ చేయండి", "cpd": "లింక్ కాపీ అయింది", "scan": "స్కాన్ చేయండి", "ins": "ఇన్‌స్టాల్", "insT": "యాప్ ఇన్‌స్టాల్ చేయండి", "insD": "ఫోన్ హోమ్ స్క్రీన్‌కు యాప్‌ను జోడించండి"}, "ur": {"app": "ایپ", "chn": "چینلز", "none": "کوئی چینل نہیں ملا", "st": "تمام ریاستیں", "co": "تمام ممالک", "flt": "فلٹر", "show": "دکھائیں", "clr": "فلٹر ہٹائیں", "set": "سیٹنگز", "ht": "تھیم", "auto": "آٹو", "light": "لائٹ", "dark": "ڈارک", "shw": "ایپ شیئر کریں", "cpl": "لنک کاپی کریں", "cpd": "لنک کاپی ہو گیا", "scan": "اسکین کریں", "ins": "انسٹال", "insT": "ایپ انسٹال کریں", "insD": "فون کی ہوم اسکرین پر ایپ شامل کریں"}};for(const k in X)Object.assign(T[k]=T[k]||{},X[k])})();
 /*lean*/const TI={auto:'<svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8"/><path d="M12 4v16"/></svg>',light:'<svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M2 12h2M20 12h2M5 5l1.500 1.500M17.500 17.500L19 19M5 19l1.500-1.500M17.500 6.500L19 5"/></svg>',dark:'<svg class="ic" viewBox="0 0 24 24"><path d="M20 14.500A8 8 0 0 1 9.500 4 8 8 0 1 0 20 14.500z"/></svg>'};
 (function(){const o={show:"दिखाएँ",pn:"सिर्फ़ इसी फ़ोन में",pf:"",cdd:"",pick:"राज्य चुनें",scan:"स्कैन करें",appd:"",gp:"Google Play",bk:"बैकअप",bkrs:"रिस्टोर",clrall:"सारा डेटा हटाएँ",wsc:"स्कैन करें, ब्राउज़र में खुलेगा",wop:"ब्राउज़र में खोलें",web:"संत रामपाल जी महाराज",shw:"ऐप शेयर करें"},e={...o,show:"Show",pn:"Only on this phone",pick:"Pick state",scan:"Scan",bk:"Backup",bkrs:"Restore",clrall:"Clear data",wsc:"Scan to open in your browser",wop:"Open in browser",web:"Sant Rampal Ji Maharaj",shw:"Share app"};Object.assign(T.hi,o);Object.assign(T.en,e)})();
 const $=i=>document.getElementById(i),K=ALL.split(" ");
@@ -1543,7 +1545,7 @@ const save=()=>{try{localStorage.setItem("s",JSON.stringify(st));localStorage.se
 const psave=()=>{try{localStorage.setItem("pr",JSON.stringify(PR))}catch(e){}idbw();window.FB&&FB.touch&&FB.touch()};
 try{navigator.storage&&navigator.storage.persist&&navigator.storage.persist()}catch(e){}
 const nz=x=>String(x).toLowerCase().normalize("NFD").replace(/[\u093C\u0951-\u0954\u200c\u200d]/g,"").replace(/\u0901/g,"\u0902").replace(/[.'’`]/g,"");
-const AL={4:"cg",0:"ap",1:"ar arunachal",3:"br",6:"gj",7:"hr",8:"hp",9:"jh",10:"ka",11:"kl",12:"mp",13:"mh",14:"mn",15:"ml",16:"mz",17:"nl",18:"उड़ीसा orissa od",19:"pb",20:"rj",21:"sk",22:"tn",23:"ts",24:"tr",25:"up",26:"uttaranchal उत्तरांचल uk ut",27:"wb bengal",28:"dl ncr dilli",29:"jk kashmir",30:"ld",31:"chd",32:"py pondicherry",34:"lk",33:"andaman nicobar",35:"dnhdd dadra daman diu"};
+const AL={4:"cg",0:"ap",1:"ar arunachal",3:"br",6:"gj",7:"hr",8:"hp",9:"jh",10:"ka",11:"kl",12:"mp",13:"mh",14:"mn",15:"ml",16:"mz",17:"nl",18:"उड़ीसा orissa od",19:"pb",20:"rj",21:"sk",22:"tn",23:"ts",24:"tr",25:"up",26:"uttaranchal उत्तरांचल ut",27:"wb bengal",28:"dl ncr dilli",29:"jk kashmir",30:"ld",31:"chd",32:"py pondicherry",34:"lk",33:"andaman nicobar",35:"dnhdd dadra daman diu"};
 const ADM=(()=>{let a={};try{a=JSON.parse(localStorage.getItem("adm1")||"{}")||{}}catch(e){}a.add=Array.isArray(a.add)?a.add:[];a.edit=a.edit&&typeof a.edit==="object"?a.edit:{};a.del=Array.isArray(a.del)?a.del:[];a.app=a.app&&typeof a.app==="object"?a.app:{};return a})();
 const META={},HIDD=[],DELD=[],CATS=[["news","समाचार","News"],["spiritual","आध्यात्मिक","Spiritual"],["podcast","पॉडकास्ट","Podcast"],["debate","चर्चा / डिबेट","Debate"],["ashram","आश्रम","Ashram"],["other","अन्य","Other"]];
 const KF=d=>{const m=META[d[0]];return m&&m.pl&&m.pl.length?K.filter(k=>m.pl.includes(k)):K},ESC=x=>String(x).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c])),cat_=id=>{const c=CATS.find(x=>x[0]==id);return c?(LC=="hi"?c[1]:c[2]):""},SXN=d=>{const m=META[d[0]]||{},l=d[3]!=0&&m.sx>=0?PRS[d[3]]:null,x=l&&l[m.sx];if(!x)return"";const a=String(x).split("|");return LC=="hi"&&a[1]?a[1]:a[0]},XS=d=>{const m=META[d[0]]||{};return[SXN(d),m.ci,cat_(m.cat)].filter(Boolean).map(x=>" · "+ESC(x)).join("")},XM=d=>{const m=META[d[0]]||{},c=CATS.find(x=>x[0]==m.cat),l=d[3]!=0&&m.sx>=0?PRS[d[3]]:null,sx=l&&l[m.sx]?String(l[m.sx]).split("|").join(" "):"";return sx+" "+(m.ci||"")+" "+(c?c[1]+" "+c[2]:"")+" "+(m.ds||"")},DS=d=>{const m=META[d[0]];return m&&m.ds?'<p class="rdesc">'+ESC(m.ds)+"</p>":""};
@@ -1577,13 +1579,14 @@ else if(sv!==""){ms=[Number(sv)]}else if(co===""&&!usePf&&my!==""&&(PR.c===""||P
 const inS=d=>d[3]==0&&d[4]>=0&&ms.includes(d[4]);
 const G=[];const add=(k,ti,x)=>{if(x.length)G.push({k,ti,x})};
 {add("s",ms.map(sn).join(" · "),r.filter(inS));add("i",H?"पूरे भारत के चैनल":"All India",r.filter(d=>d[3]==0&&d[4]<0));add("o",ms.length?(H?"अन्य राज्य":"Other states"):(H?"राज्यों के चैनल":"State channels"),r.filter(d=>d[3]==0&&d[4]>=0&&!inS(d)));const cs=[];r.forEach(d=>{if(d[3]!=0&&!cs.includes(d[3]))cs.push(d[3])});cs.forEach(c=>add("c",cn(c),r.filter(d=>d[3]==c)))}
+if(sa&&G.length>1){const qt=String(q).split(/[,،]/).filter(z=>z.trim()).map(z=>nz(z).split(/[\s&\-]+/).filter(Boolean));const cm=c=>{const w=nz(C[c][0]+" "+C[c][1]).split(/[\s&\-()]+/).filter(Boolean);return qt.some(ks=>ks.length&&ks.every(k=>w.some((y,n)=>w.slice(n).join("").startsWith(k))))};const rk=g=>g.k=="s"?0:(g.k=="c"&&cm(g.x[0][3]))?1:2;G.forEach((g,i)=>g.i=i);G.sort((a,b)=>rk(a)-rk(b)||a.i-b.i)}
 return G}
 function home(){const q=$("q").value.trim(),sa=!!nz(q).replace(/[\s&\-]/g,"");$("qx").classList.toggle("hide",!$("q").value);
 $("fs").value=sv;$("fc").value=co;$("fs").disabled=co!==""&&co!=="0";
 [...$("pc").children].forEach(b=>b.classList.toggle("on",b.dataset.p===pf));
 const fa=co!==""||sv!==""||pf!=="";
 const r=sa?D.filter(d=>hit(d,q)):D.filter(d=>(co===""||d[3]==co)&&(sv===""||(d[3]==0&&(d[4]==sv||d[4]<0))));
-const my=(PR.s!=null&&PR.s!=="")?PR.s:"";let qh="";
+const my=(!GUEST&&PR.s!=null&&PR.s!=="")?PR.s:"";let qh="";
 
 $("qk").innerHTML=qh;if(cur=="count")setTimeout(clist,0);
 const ac=[];if(co!=="")ac.push(["c",cn(co)]);if(sv!=="")ac.push(["s",sn(sv)]);if(pf)ac.push(["p",P[pf][0]]);
@@ -1600,7 +1603,7 @@ $("pc").onclick=e=>{const b=e.target.closest("button");if(b){pf=b.dataset.p;home
 $("qk").onclick=e=>{const a=e.target.dataset.a;if(a=="rst")rst();};
 $("list").onclick=e=>{const a=e.target.closest("[data-a]");if(a){rst();return}const b=e.target.closest("[data-tg]");if(!b)return;const i=+b.dataset.tg,r=b.closest(".row");oh.has(i)?oh.delete(i):oh.add(i);r.classList.toggle("open");b.setAttribute("aria-expanded",oh.has(i))};
 /* states */
-function states(){const my=(PR.s!=null&&PR.s!=="")?Number(PR.s):-1,bt=i=>`<button class="sb" data-s="${i}"><span>${sn(i)}</span><svg class="ic" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>`,ids=S.map((x,i)=>i),rest=ids.filter(i=>i!==my);$("sg").innerHTML=my>=0&&S[my]?ghh({k:"s",ti:t("my"),x:[my]})+bt(my)+ghh({k:"o",ti:hi()?"सभी राज्य":"All states",x:rest})+rest.map(bt).join(""):ids.map(bt).join("")}
+function states(){const my=(!GUEST&&PR.s!=null&&PR.s!=="")?Number(PR.s):-1,bt=i=>`<button class="sb" data-s="${i}"><span>${sn(i)}</span><svg class="ic" viewBox="0 0 24 24"><path d="M9 6l6 6-6 6"/></svg></button>`,ids=S.map((x,i)=>i),rest=ids.filter(i=>i!==my);$("sg").innerHTML=my>=0&&S[my]?ghh({k:"s",ti:t("my"),x:[my]})+bt(my)+ghh({k:"o",ti:hi()?"सभी राज्य":"All states",x:rest})+rest.map(bt).join(""):ids.map(bt).join("")}
 $("sg").onclick=e=>{const b=e.target.closest("button");if(b){fsel("home");sv=b.dataset.s;co="0";pf="";$("q").value="";go("home");home()}};
 /* count */
 function csum(){const tp={};let g=0,cd=0;D.forEach(d=>{const k=kk(d);if(sum(k))cd++;K.forEach(p=>{tp[p]=(tp[p]||0)+(k[p]||0);g+=k[p]||0})});
@@ -1650,7 +1653,7 @@ $("xg").innerHTML=A.map(a=>`<a class="pl" href="${a[1]}" target="_blank" rel="no
 function xsheet(o){$("xsh").classList.toggle("o",o);$("ov").classList.toggle("o",anyo());$("xsh").setAttribute("aria-hidden",!o)}
 $("xx").onclick=()=>xsheet(false);
 $("xg").onclick=e=>{if(e.target.closest("[data-c]")){copy(xu);xsheet(false)}else if(e.target.closest("a"))setTimeout(()=>xsheet(false),300)};
-$("bgp").href=APPLINK;try{$("api").src=APPICON}catch(e){}$("bsh").onclick=()=>GUEST?share(WEBLINK,t("ttl")):share(APPLINK,t("appn"));
+$("bgp").href=APPLINK;try{$("api").src=APPICON}catch(e){}$("bsh").onclick=()=>share(APPLINK,t("appn"));
 const shw=()=>wsheet(true);
 function wsheet(o){const was=$("wsh").classList.contains("o");$("wsh").classList.toggle("o",o);$("ov").classList.toggle("o",anyo());$("wsh").setAttribute("aria-hidden",!o);if(o)setTimeout(()=>$("wx").focus({preventScroll:true}),260);else if(was)$("mb").focus({preventScroll:true})}
 $("wop").href=WEBLINK;$("wx").onclick=()=>wsheet(false);$("wcp").onclick=()=>share(WEBLINK,t("ttl"));
@@ -1659,7 +1662,7 @@ function drawer(o){const was=$("dr").classList.contains("o");$("dr").classList.t
 function dnav(){$("dn").innerHTML=NAV.filter(n=>n[0]!="app").map(n=>`<button data-p="${n[0]}"><svg class="ic" viewBox="0 0 24 24">${n[1]}</svg>${t(TK[n[0]])}</button>`).join("")+`<hr><button data-a="shw"><svg class="ic" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.600 10.500l6.800-4M8.600 13.500l6.800 4"/></svg>${t("shw")}</button>${GUEST&&!STANDALONE()?`<button data-a="ins"><svg class="ic" viewBox="0 0 24 24"><path d="M12 4v11M7.500 10.500L12 15l4.500-4.500M5 19h14"/></svg>${t("ins")}</button>`:""}<a href="https://www.jagatgururampalji.org" target="_blank" rel="noopener noreferrer"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span>${t("web")}<small>jagatgururampalji.org</small></span><svg class="ic" viewBox="0 0 24 24" style="margin-inline-start:auto;width:18px;height:18px;color:var(--mu)"><path d="M7 17L17 7M9 7h8v8"/></svg></a>`;mark()}
 function mark(){document.querySelectorAll("#dn button[data-p]").forEach(b=>b.classList.toggle("on",b.dataset.p==cur))}
 $("mb").onclick=()=>drawer(true);$("dx").onclick=()=>drawer(false);
-$("dn").onclick=e=>{const b=e.target.closest("button");if(!b){if(e.target.closest("a"))drawer(false);return}drawer(false);if(b.dataset.p)go(b.dataset.p);else if(GUEST){if(b.dataset.a=="ins")inst();else share(WEBLINK,t("ttl"))}else shw()};
+$("dn").onclick=e=>{const b=e.target.closest("button");if(!b){if(e.target.closest("a"))drawer(false);return}drawer(false);if(b.dataset.p)go(b.dataset.p);else if(GUEST&&b.dataset.a=="ins")inst();else shw()};
 $("cla").onclick=()=>ask(t("cfa"),t("clrall"),()=>{st={};PR={};save();psave();pfill();phead();csum();clist();home();states();toast(t("dcl"))});
 /* profile */
 const PRL={0:{d:"91",l:[10],s:/^[6-9]/,x:"98765 43210"},1:{d:"977",l:[10],s:/^9[6-8]/,x:"98XXXXXXXX"},2:{d:"1",l:[10],s:/^[2-9]/,x:"2025550123"},3:{d:"44",l:[10],s:/^7/,x:"7400 123456"},4:{d:"975",l:[8],s:/^(17|77)/,x:"17XXXXXX"},5:{d:"1",l:[10],s:/^[2-9]/,x:"4165550123"},6:{d:"49",l:[10,11],s:/^1[5-7]/,x:"1512 3456789"},7:{d:"33",l:[9],s:/^[67]/,x:"6 12 34 56 78"},8:{d:"86",l:[11],s:/^1[3-9]/,x:"138 0013 8000"}};
@@ -1766,7 +1769,7 @@ function draw(centre){const q=nz(Q.value.trim()).replace(/\+/g,"");const v=cur.v
 const r=opts.filter(o=>!q||nz(o.text+" "+o.en).replace(/\+/g,"").includes(q));
 L.innerHTML=r.length?r.map(o=>`<button type="button" class="pki${o.value===v?" on":""}" role="option" data-v="${esc(o.value)}" aria-selected="${o.value===v}"><span>${esc(o.text)}</span>${o.value===v?OK:""}</button>`).join(""):`<div class="pke">${hi()?"कुछ नहीं मिला":"No results"}</div>`;
 if(centre){const b=L.querySelector(".pki.on");L.scrollTop=b?Math.max(0,b.offsetTop-L.clientHeight/2+b.offsetHeight/2):0}}
-function open(el){if(!el||el.disabled)return;cur=el;const CA={2:"united states of america america us",3:"united kingdom britain england great britain gb",5:"canada",4:"bhutan",1:"nepal"};
+function open(el){if(!el||el.disabled)return;cur=el;const CA={2:"united states of america america us usa",3:"united kingdom britain england great britain gb uk",5:"canada",4:"bhutan",1:"nepal"};
 const EN=el.id==="fc"||el.id==="f_c"||el.id==="a_c"?C:el.id==="fs"||el.id==="a_s"?S:(el.id==="f_s"&&document.getElementById("f_c").value==="0")?S:null;const isC=el.id==="fc"||el.id==="f_c"||el.id==="a_c";
 opts=[...el.options].map(o=>({value:o.value,text:o.textContent,en:EN&&o.value!==""&&EN[o.value]?EN[o.value][0]+(isC&&CA[o.value]?" "+CA[o.value]:""):""}));
 const lb=el.parentNode.querySelector("h3,label");document.getElementById("pkt").textContent=lb?lb.textContent.trim():"";
@@ -1805,7 +1808,7 @@ const m=k=>MT[hi()?"hi":"en"][k];
 const N=s=>nz(s).split(/\s+/).filter(Boolean);
 /* ---------- शब्द-ज्ञान ---------- */
 const FILL=new Set(("show find search open display give get tell me my please channel channels the of for in on a an to is are and with about all from look want need can you i will what where which that this it at by some any shows list "+
-"ke ki ko se me mein par pe hai hain dikhao dikha dikhaiye dijiye do batao bataiye khojo khojiye dhundo dhoondo chahiye chahie mujhe mera meri hamare hame wale wala wali vale chanel chainal chaneel kaun kaunse koi bhi aur ya ek "+
+"ka kaa kee ke ki ko se me mein par pe hai hain dikhao dikha dikhaiye dijiye do batao bataiye khojo khojiye dhundo dhoondo chahiye chahie mujhe mera meri hamare hame wale wala wali vale chanel chainal chaneel kaun kaunse koi bhi aur ya ek "+
 "दिखाओ दिखा दिखाइए दिखाइये दिखाएं दिखाएँ दिखाना दिखादो दो दीजिए दीजिये खोजो खोजें खोजिए खोज ढूंढो ढूँढो ढूंढें ढूंढिए ढूंढ ढूँढ तलाश सर्च करो करें कीजिए कीजिये कर खोलो खोलें खोलिए खोल मुझे मुझको मेरे मेरा मेरी हमें हमारे चाहिए चाहिये का के की को से पर पे में मैं है हैं हो था वाला वाले वाली और एक ज़रा जरा कृपया प्लीज़ प्लीज चैनल चैनल्स चैनलों चैनलो सारे सारा सभी सब सबको सबके सबकी ये यह वो वह उन उस इस इन जो जिनमें जिसमें कौन कौनसा कौनसे कहाँ कहां क्या बताओ बताइए बताएं बताना देखना देखो देखें लगाओ लगा चलाओ जी ऐसे ऐसा वैसे कोई भी तो ही बारे संबंधित related पूरे पूरा नई नयी लिस्ट सूची जानकारी वाला हमको अपने अपना अपनी").split(/\s+/).map(nz));
 const ALLW=new Set("सभी सारे सारा सब सबको सबके सबकी all sab sabhi saare sare चैनल चैनल्स चैनलों चैनलो channel channels chanel chainal".split(" ").map(nz));
 const FORW=new Set("विदेश विदेशी विदेशों international foreign abroad overseas इंटरनेशनल अंतरराष्ट्रीय अंतर्राष्ट्रीय videsh".split(" ").map(nz));
@@ -1821,7 +1824,12 @@ tg:"telegram टेलीग्राम टेलिग्राम",
 tb:"tumblr टम्बलर टंबलर टंब्लर"}).forEach(([k,v])=>v.split(" ").forEach(w=>PT[nz(w)]=k));
 /* "यू पी", "एम पी", "यू एस ए" जैसे अक्षर-नाम -> कोड */
 const L1={};Object.entries({a:"ए",b:"बी",c:"सी",d:"डी",e:"ई",f:"एफ",g:"जी",h:"एच",i:"आई",j:"जे",k:"के",l:"एल",m:"एम",n:"एन",o:"ओ",p:"पी",q:"क्यू",r:"आर",s:"एस",t:"टी",u:"यू",v:"वी",w:"डब्ल्यू",x:"एक्स",y:"वाई",z:"जेड"}).forEach(([k,v])=>{L1[k]=k;L1[nz(v)]=k});["डबल्यू","डब्लू","डबलयू"].forEach(x=>L1[nz(x)]="w");
-const CODE2=new Set(["sa","fb"]);Object.values(AL).forEach(v=>String(v).split(" ").forEach(c=>{if(/^[a-z]{2}$/.test(c))CODE2.add(c)}));
+const vn=s=>String(s).replace(/ी/g,"ि").replace(/ू/g,"ु").replace(/ै/g,"े").replace(/ौ/g,"ो");
+let L1P=null;const lt=x=>{if(L1[x])return L1[x];if(!L1P){L1P={};Object.keys(L1).forEach(h=>{if(/[^\x00-\x7f]/.test(h)){const k=vn(h);if(!L1P[k])L1P[k]=L1[h]}})}return L1P[vn(x)]};
+/* "SA" बोलने पर माइक अक्सर sai / सई / साई / सा सुनता है -> सब को SA माना जाए */
+const SAVS=new Set(["sai","say","saa","sei","saay","sae","सई","साई","सै","साए","सय","साय","सेई"].map(nz)),SAVW=new Set(["सा"].map(nz));
+const SAV=(a,T)=>(SAVS.has(a)||SAVW.has(a))&&(T.length===1||T.some(x=>x!==a&&(synOf(x)||PT[x]||cache().pw.has(x))))?"sa":"";
+const CODE2=new Set(["sa","fb","uk"]);Object.values(AL).forEach(v=>String(v).split(" ").forEach(c=>{if(/^[a-z]{2}$/.test(c))CODE2.add(c)}));
 const SG={};{const inv={};Object.keys(L1).forEach(h=>{if(/[^\x00-\x7f]/.test(h))(inv[L1[h]]=inv[L1[h]]||[]).push(h)});
 CODE2.forEach(c=>(inv[c[0]]||[]).forEach(a=>(inv[c[1]]||[]).forEach(b=>{SG[a+b]=c})));
 (inv.u||[]).forEach(a=>(inv.s||[]).forEach(b=>(inv.a||[]).forEach(c=>{SG[a+b+c]="usa"})))}
@@ -1835,10 +1843,10 @@ Object.entries({
 "हरियाणा":"हरयाणा हरियाना हरयाना हरीयाणा हरियान हरीयाना",
 "केरल":"केरला केरेला","कर्नाटक":"कर्नाटका कर्णाटक","तेलंगाना":"तेलंगना तेलंगाणा तेलांगना तेलगाना तेलंगणा",
 "गोवा":"गोआ","मेघालय":"मेघालया","आंध्र":"आंध्रा आन्ध्र आंद्र आंद्रा","उत्तराखंड":"उत्तराखण्ड उत्तराखन्ड","झारखंड":"झारखण्ड झारखन्ड",
-"महाराष्ट्र":"महाराष्ट्रा महाराष्ट","अमेरिका":"अमरीका अमेरिक","पश्चिम":"पश्चीम","बांग्ला":"बंगला बांगला बाङ्ला","संत":"सेंट सैंट सन्त"}).forEach(([k,v])=>v.split(" ").forEach(w=>{ALT[nz(w)]=nz(k)}));
+"महाराष्ट्र":"महाराष्ट्रा महाराष्ट","अमेरिका":"अमरीका अमेरिक america amerika amrika","ब्रिटेन":"britain england इंग्लैंड ब्रिटिश","पश्चिम":"पश्चीम","बांग्ला":"बंगला बांगला बाङ्ला","संत":"सेंट सैंट सन्त"}).forEach(([k,v])=>v.split(" ").forEach(w=>{ALT[nz(w)]=nz(k)}));
 const SYN={};const SYNP={};
 Object.entries({
-"न्यूज़ न्यूज समाचार समाचारों खबर खबरें खबरे खबरो ख़बर ख़बरें news samachar khabar khabre":"न्यूज़ समाचार news",
+"न्यूज़ न्यूज समाचार समाचारों खबर खबरें खबरे खबरो ख़बर ख़बरें news samachar khabar khabre नूज़ नूज नुज़ नुज न्यूस न्युज़ न्युस नयूज़ नयूज निउज़ nuz nus newz":"न्यूज़ समाचार news",
 "आश्रम आश्रमों ashram":"आश्रम ashram",
 "पॉडकास्ट पोडकास्ट पॉडकास्ट्स podcast podcasts":"पॉडकास्ट podcast",
 "डिबेट डिबेट्स debate debates चर्चा बहस":"डिबेट debate चर्चा",
@@ -1857,39 +1865,41 @@ const synOf=w=>SYN[w]||SYNP[ph(w)]||null;
 /* ---------- नामों की सूचियाँ (चैनल बदलने पर अपने-आप ताज़ा) ---------- */
 let CACHE=null;
 function cache(){if(CACHE&&CACHE.n===D.length)return CACHE;
-const w=new Set(),pw=new Set(),disp={},cids=new Set(D.map(d=>d[3]));
+const w=new Set(),pw=new Set(),disp={},cids=new Set(D.map(d=>d[3])),cw=new Set();C.forEach(c=>[c[0],c[1]].forEach(n=>String(n).split(/[\s&\-()–,]+/).filter(Boolean).forEach(x=>cw.add(nz(x)))));
 const addP=(txt)=>String(txt).split(/[\s&\-()–]+/).filter(Boolean).forEach(x=>{const z=nz(x);if(z){pw.add(z);disp[z]=disp[z]||x}});
 S.forEach((s,i)=>{addP(s[0]);addP(s[1]);addP(AL[i]||"");[s[0],s[1]].forEach(n=>{const p=String(n).split(/[\s&\-]+/).filter(Boolean);if(p.length>1){ALT[nz(p.join(""))]=nz(p.join(" "));p.forEach(x=>{if(x.length>2)ALT[nz(p.join(""))]=nz(p.join(" "))})}})});
 C.forEach((c,i)=>{if(i===0||cids.has(i)){addP(c[0]);addP(c[1])}});
 Object.values(HM).forEach(h=>h.w.forEach(x=>{if(x.length>=3)w.add(x)}));
 D.forEach(d=>[d[1],d[2]].forEach(n=>String(n).split(/[\s&\-]+/).filter(Boolean).forEach(x=>{const z=nz(x);if(z&&!disp[z])disp[z]=x})));
-CACHE={n:D.length,w:[...w].map(x=>[x,ph(x)]),pw,disp};return CACHE}
+CACHE={n:D.length,w:[...w].map(x=>[x,ph(x)]),pw,disp,cw};return CACHE}
 const hasHit=q=>D.some(d=>hit(d,q));
 function lev(a,b,mx){const n=a.length,k=b.length;if(Math.abs(n-k)>mx)return 99;let p=Array.from({length:k+1},(_,i)=>i);
 for(let i=1;i<=n;i++){const c=[i];let mn=i;for(let j=1;j<=k;j++){const v=Math.min(p[j]+1,c[j-1]+1,p[j-1]+(a[i-1]===b[j-1]?0:1));c[j]=v;if(v<mn)mn=v}if(mn>mx)return 99;p=c}return p[k]}
 /* गलत सुने शब्द को सबसे मिलते-जुलते नाम से सुधारें */
-function fixTok(k){if(k.length<3||hasHit(k)||synOf(k))return k;const pk=ph(k),L=pk.length,mx=L<=3?0:L<=5?1:2;let best=k,bd=99;
-for(const [w,pw] of cache().w){const d=pk===pw?0:lev(pk,pw,mx);if(d<bd){bd=d;best=w;if(!d)break}}return bd<=mx?best:k}
+function fixTok(k){if(k.length<3||hasHit(k)||synOf(k)||cache().cw.has(k))return k;const pk=ph(k),L=pk.length,mx=L<=3?0:L<=5?1:2;let best=k,bd=99;
+for(const [w,pw] of cache().w.concat(SYNK())){const d=pk===pw?0:lev(pk,pw,mx);if(d<bd){bd=d;best=w;if(!d)break}}return bd<=mx?best:k}
+let SYNKC=null;const SYNK=()=>SYNKC||(SYNKC=Object.keys(SYN).map(x=>[x,ph(x)]));
+function mergeSplit(a){const o=[];for(let i=0;i<a.length;i++){let w=a[i],j=i;while(j+1<a.length&&j-i<2&&!synOf(w)&&!synOf(a[j+1])){const m=w+a[j+1];if(w.length>=2&&a[j+1].length>=2&&hasHit(m)&&!hasHit(w+" "+a[j+1])){w=m;j++}else break}o.push(w);i=j}return o}
 /* बोला हुआ वाक्य -> {pf: प्लेटफ़ॉर्म, t: काम के शब्द, gen: "सभी चैनल" जैसा सामान्य कथन, fo: विदेश} */
 function parse(raw){
 const rt=String(raw).replace(/[,;:!?।"“”()\[\]{}&\-\/|]/g," ").split(/\s+/).filter(Boolean),T=rt.map(nz),O={};rt.forEach((w,i)=>{O[T[i]]=w.toLowerCase()});
 const A=[];
 for(let i=0;i<T.length;i++){let a=T[i],b=T[i+1],c=T[i+2],h=false;
-if(b!==undefined&&L1[a]&&L1[b]){if(c!==undefined&&L1[c]&&L1[a]+L1[b]+L1[c]==="usa"){A.push("usa");i+=2;continue}const cd=L1[a]+L1[b];if(CODE2.has(cd)){A.push(cd);i++;continue}}
+if(b!==undefined&&lt(a)&&lt(b)){if(c!==undefined&&lt(c)&&lt(a)+lt(b)+lt(c)==="usa"){A.push("usa");i+=2;continue}const cd=lt(a)+lt(b);if(CODE2.has(cd)){A.push(cd);i++;continue}}
 if(b!==undefined)for(const x of BI){if(a===x[0]&&b===x[1]){A.push(x[2]);i++;h=true;break}}
-if(!h)A.push(SG[a]||a)}
+if(!h)A.push(SG[a]||SAV(a,T)||a)}
 cache();
 let pk="",gen=false,fo=false;const R=[];
 A.forEach(w=>{if(PT[w]){pk=pk||PT[w];return}if(ALLW.has(w))gen=true;if(FORW.has(w)){fo=true;return}if(FILL.has(w))return;
 const e=ALT[w];if(e)e.split(" ").forEach(x=>R.push(x));else R.push(w)});
 return{pf:pk,t:R,gen,fo,O}}
 /* शब्दों को राज्य/देश और बाकी (न्यूज़, आश्रम, नाम) में बाँटकर खोज-वाक्य बनाएँ */
-const disp=(w,O)=>O[w]||cache().disp[w]||w;
+const disp=(w,O)=>cache().disp[w]||O[w]||w;
 function expand(tk){let out=[""];tk.forEach(w=>{const al=synOf(w)||[w],nx=[];out.forEach(o=>al.forEach(a=>{if(nx.length<24)nx.push(o?o+" "+a:a)}));out=nx});return out}
 const CODEMAP={};Object.entries(AL).forEach(([i,v])=>String(v).split(" ").forEach(c=>{if(/^[a-z]{2}$/.test(c)&&c!=="uk"&&c!=="ut")CODEMAP[c]=+i}));
 function plan(o){
 const ca=cache();let tk=[];o.t.forEach(w=>{const i=CODEMAP[w];if(i!==undefined)N(S[i][hi()?1:0]).forEach(x=>tk.push(x));else tk.push(w)});
-tk=tk.map(w=>synOf(w)?w:fixTok(w));tk=tk.filter((w,i)=>w!==tk[i-1]);
+tk=mergeSplit(tk);tk=tk.map(w=>synOf(w)?w:fixTok(w));tk=tk.filter((w,i)=>w!==tk[i-1]);
 const P=[],Q=[];let run=[];
 const flush=()=>{let i=0;while(i<run.length){let j=run.length;while(j>i&&!hasHit(run.slice(i,j).join(" ")))j--;if(j>i){P.push(run.slice(i,j).join(" "));i=j}else i++}run=[]};
 tk.forEach(w=>{if(ca.pw.has(w))run.push(w);else{flush();Q.push(w)}});flush();
@@ -1911,7 +1921,8 @@ return keep.map(s=>s.split(" ").map(w=>disp(w,o.O)).join(" ")).join(", ")}
 /* एक वाक्य का अर्थ: खोज-शब्द, प्लेटफ़ॉर्म और कितने चैनल मिले */
 function interpret(raw,id){
 const o=parse(raw),isQ=id==="q"||id==="cq";
-const q=isQ?plan(o):o.t.map(w=>disp(w,o.O)).join(" ");
+const tk0=id==="aq"?mergeSplit(o.t).map(w=>{const sy=synOf(w);return sy?sy[0]:fixTok(w)}):o.t;
+const q=isQ?plan(o):tk0.map(w=>disp(w,o.O)).join(" ");
 const n=isQ&&q?D.filter(d=>hit(d,q)).length:-1;
 return{q,pf:o.pf,gen:o.gen,n,o}}
 window.SAVoice={parse,plan,interpret};
@@ -1978,11 +1989,14 @@ inp._vd=0;btn.classList.add("on");btn.innerHTML=BARS;inp.classList.add("vl");inp
 s.w=setTimeout(()=>{if(S2===s&&!s.started){finish(false);tip(inp,m("slow"),6000);kb(inp)}},8000);
 s.to=setTimeout(()=>finish(true),25000)}
 document.addEventListener("visibilitychange",()=>{if(document.hidden)finish(false)});
+/* असली शब्द से मिलने वाले चैनल (नाम के पहले अक्षरों वाले छोटे रूप जैसे SAI से नहीं) */
+const realHit=(d,q)=>{const h=HM[d[0]];if(!h)return false;const w=h.w.slice(0,-1);return String(q).split(/[,،]/).filter(x=>x.trim()).some(p=>nz(p).split(/[\s&\-]+/).filter(Boolean).every(k=>w.some((x,i)=>w.slice(i).join("").startsWith(k))||(k.length>3&&h.x.some(y=>y.startsWith(k)))))};
+const vscore=(r,rank)=>{const real=r.q&&r.n>0?D.some(d=>realHit(d,r.q)):false;return(r.n>0?(real?30:20):(r.pf||r.gen?10:0))-rank*0.1};
 /* बोला/लिखा वाक्य समझकर खोज-बॉक्स भरें */
 function apply(inp,raw,alts,quiet){
 const id=inp.id,isQ=id==="q"||id==="cq";
 let best=interpret(raw,id);
-if(isQ&&best.n===0&&alts&&alts.length)for(const a of alts){if(!a||a===raw)continue;const r=interpret(a,id);if(r.n>0){best=r;break}}
+if(isQ&&alts&&alts.length){let bs=vscore(best,0);alts.forEach((a,k)=>{if(!a||a===raw)return;const r=interpret(a,id),s=vscore(r,k+1);if(s>bs){bs=s;best=r}})}
 const {q,pf:ppf,gen,n}=best;
 if(!q&&!ppf){
  if(gen&&isQ){if(id==="q"&&typeof rst==="function")rst();else{inp.value="";inp.dispatchEvent(new Event("input",{bubbles:true}))}if(!quiet)tip(inp,m("all"),3500);return}
