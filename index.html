@@ -1806,7 +1806,7 @@ function otpWire(id,send,verify,done){const g=x=>gg(id+x);let sent=false;
    if(!sent){const num=parseNum(g("n").value);if(!num){g("e").textContent=A("badNum");b.disabled=false;return}
     await send(num);sent=true;g("w").hidden=false;g("n").disabled=true;b.textContent=A("vOtp");g("o").focus()}
    else{const c=g("o").value;if(c.length!==6){g("e").textContent=A("otpBad");b.disabled=false;return}await verify(c);await done()}
-  }catch(e){g("e").textContent=(sent?A("otpBad"):A("otpE"))+(e&&e.code?" ("+e.code+")":"");if(!sent&&window.FB&&FB.resetRv)FB.resetRv()}
+  }catch(e){g("e").textContent=(sent?A("otpBad"):A("otpE"))+(e&&(e.code||e.message)?" ("+String(e.code||e.message).slice(0,120)+")":"");try{console.error("OTP",e)}catch(_){}if(!sent&&window.FB&&FB.resetRv)FB.resetRv()}
   b.disabled=false}}
 function authBox(h,p,x){B.innerHTML='<div class="apin"><div class="lk">'+IC.lock+'</div>'+(h?'<h2>'+h+'</h2>':'')+(p?'<p>'+p+'</p>':'')+(x||'')+'</div>'}
 function lockV(){
