@@ -1,7 +1,7 @@
 /* Satlok Social App - service worker (installable + offline) */
-const V = "satlok-v17";
+const V = "satlok-v19";
 const CORE = ["./", "./index.html", "./manifest.json", "./manifest-guest.json",
-  "./icon-192.png", "./icon-512.png", "./icon-maskable-512.png", "./apple-touch-icon.png"];
+  "./icon-192.png", "./icon-512.png", "./icon-maskable-512.png", "./splash-blank-384.png", "./apple-touch-icon.png"];
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(V).then(c => Promise.all(CORE.map(u => c.add(u).catch(() => {})))).then(() => self.skipWaiting()));
 });

@@ -1,13 +1,12 @@
 {
  "name": "सतलोक सोशियल ऐप",
  "short_name": "Satlok",
- "id": "./",
  "start_url": "./",
  "scope": "./",
  "display": "standalone",
  "orientation": "portrait",
  "lang": "hi",
- "background_color": "#2b1405",
+ "background_color": "#f7b716",
  "theme_color": "#2b1405",
  "icons": [
   {
@@ -19,6 +18,12 @@
   {
    "src": "icon-512.png",
    "sizes": "512x512",
+   "type": "image/png",
+   "purpose": "any"
+  },
+  {
+   "src": "splash-blank-384.png",
+   "sizes": "384x384",
    "type": "image/png",
    "purpose": "any"
   },
