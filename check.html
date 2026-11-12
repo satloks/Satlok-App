@@ -1,0 +1,9 @@
+<!doctype html><html lang="hi"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>PWA जाँच</title>
+<body style="font-family:sans-serif;padding:16px;line-height:1.7"><h2>PWA फ़ाइलों की जाँच</h2><div id="o">जाँच रही है…</div>
+<script>
+const F=["index.html","sw.js","manifest.json","manifest-guest.json","icon-192.png","icon-512.png","icon-maskable-512.png","apple-touch-icon.png"];
+(async()=>{let h="",bad=0;for(const f of F){try{const r=await fetch(f+"?c="+Date.now(),{cache:"no-store"});if(r.ok)h+="✅ "+f+"<br>";else{bad++;h+="❌ "+f+" — नहीं मिली ("+r.status+")<br>"}}catch(e){bad++;h+="❌ "+f+" — नहीं खुली<br>"}}
+try{const t=await (await fetch("index.html?c="+Date.now(),{cache:"no-store"})).text();h+=t.includes('manifest.json')?"✅ index.html नया वाला है<br>":"❌ index.html पुराना वाला है (नया डालें)<br>";if(!t.includes('manifest.json'))bad++}catch(e){}
+const sw=await (navigator.serviceWorker?navigator.serviceWorker.getRegistration():null);h+=sw&&sw.active?"✅ सर्विस वर्कर चालू<br>":"⚠️ सर्विस वर्कर अभी चालू नहीं (मुख्य पेज एक बार खोलें)<br>";
+h+="<hr><b>"+(bad?"कुछ फ़ाइलें गड़बड़ हैं — ऊपर ❌ वाली फ़ाइलें GitHub में डालें":"सब ठीक है")+"</b>";document.getElementById("o").innerHTML=h})();
+</script></body></html>

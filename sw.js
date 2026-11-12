@@ -1,5 +1,5 @@
 /* Satlok Social App - service worker (installable + offline) */
-const V = "satlok-v8";
+const V = "satlok-v17";
 const CORE = ["./", "./index.html", "./manifest.json", "./manifest-guest.json",
   "./icon-192.png", "./icon-512.png", "./icon-maskable-512.png", "./apple-touch-icon.png"];
 self.addEventListener("install", e => {
