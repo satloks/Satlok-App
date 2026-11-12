@@ -2,7 +2,8 @@
 <html lang="hi"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>सतलोक सोशियल ऐप</title>
-<link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="icon" type="image/png" href="icons/favicon-32.png">
+<script>window.__dip=null;addEventListener("beforeinstallprompt",function(e){e.preventDefault();window.__dip=e});</script>
 <link rel="manifest" href="manifest.json" id="mfl">
 <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
 <meta name="theme-color" content="#c2410c">
@@ -1782,7 +1783,7 @@ Object.assign(T.hi,{insT:"ऐप इंस्टॉल करें",insD:"फ�
 Object.assign(T.en,{insT:"Install the app",insD:"Add the app to your home screen",ins:"Install",insA:"Open the browser menu (⋮) and choose \"Install app\" or \"Add to Home screen\".",insI:"Tap the Share button in Safari, then choose \"Add to Home Screen\".",insOk:"OK",insDn:"App installed"});
 var DIP=null;function STANDALONE(){try{return matchMedia("(display-mode: standalone)").matches||navigator.standalone===true}catch(e){return false}}
 function insShow(){const b=$("ibn");if(!b)return;let d=false;try{d=sessionStorage.getItem("ibd")==="1"}catch(e){}b.hidden=!(GUEST&&!STANDALONE()&&!d)}
-function inst(){if(DIP){const e=DIP;DIP=null;try{e.prompt();e.userChoice&&e.userChoice.then(r=>{if(r&&r.outcome=="accepted")toast(t("insDn"))}).catch(()=>{})}catch(x){}return}
+function inst(){if(!DIP&&window.__dip)DIP=window.__dip;if(DIP){const e=DIP;DIP=null;window.__dip=null;try{e.prompt();e.userChoice&&e.userChoice.then(r=>{if(r&&r.outcome=="accepted")toast(t("insDn"))}).catch(()=>{})}catch(x){}return}
  const ios=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform=="MacIntel"&&navigator.maxTouchPoints>1);ask(t(ios?"insI":"insA"),t("insOk"),()=>{})}
 {
  /* manifest: guest installs limited (?g=1) version, main user installs the full version */
@@ -1792,7 +1793,7 @@ function inst(){if(DIP){const e=DIP;DIP=null;try{e.prompt();e.userChoice&&e.user
   const m=document.createElement("meta");m.name="apple-mobile-web-app-capable";m.content="yes";document.head.appendChild(m);
   const m2=document.createElement("meta");m2.name="mobile-web-app-capable";m2.content="yes";document.head.appendChild(m2);
   }}catch(e){}
- addEventListener("beforeinstallprompt",e=>{e.preventDefault();DIP=e});
+ addEventListener("beforeinstallprompt",e=>{e.preventDefault();DIP=e;window.__dip=e});if(window.__dip)DIP=window.__dip;
  addEventListener("appinstalled",()=>{DIP=null;insShow();toast(t("insDn"))});
  if(GUEST){$("ibi").onclick=inst;$("ibc").onclick=()=>{try{sessionStorage.setItem("ibd","1")}catch(e){}insShow()};insShow()}
 }
@@ -2000,11 +2001,11 @@ else if(er==="service-not-allowed"){setOff(true);tip(inp,m("nosr"),6000);kb(inp)
 else if(er==="network")tip(inp,m("net"),6000);
 else if(er==="audio-capture")tip(inp,m("mic"),6000);
 else tip(inp,m("none"),5000)}
-function endNow(s){if(S2!==s)return;const t=s.txt,c=s.cancel,er=s.err,inp=s.inp;cleanup();hideTip();if(c)return;
+function endNow(s){if(S2!==s)return;const t=s.txt,c=s.cancel,er=s.err,inp=s.inp,pv=s.prev;cleanup();hideTip();if(c||!t){if(inp.value!==pv)inp.value=pv}if(c)return;
 if(t){apply(inp,t,s.alts,false);return}
 if(er==="aborted")return;
-if(er==="language-not-supported"&&!s.retry){begin(inp,s.btn,{lang:"en-IN",retry:1});return}
-if(er==="audio-capture"&&!s.retry){s.btn.classList.add("on");s.btn.innerHTML=BARS;setTimeout(()=>begin(inp,s.btn,{retry:1}),500);return}
+if(er==="language-not-supported"&&!s.retry){begin(inp,s.btn,{lang:"en-IN",retry:1,prev:s.prev});return}
+if(er==="audio-capture"&&!s.retry){s.btn.classList.add("on");s.btn.innerHTML=BARS;setTimeout(()=>begin(inp,s.btn,{retry:1,prev:s.prev}),500);return}
 fail(inp,er)}
 function finish(ok){if(!S2)return;const s=S2;s.cancel=!ok;if(!ok){try{s.r.abort()}catch(e){}cleanup();hideTip();return}
 try{s.r.stop()}catch(e){}setTimeout(()=>endNow(s),1500)}
@@ -2023,12 +2024,12 @@ setTimeout(()=>begin(inp,btn,{}),MOK?60:0)})}
 function begin(inp,btn,o){
 let r;try{r=new SR()}catch(e){idle(btn);setOff(true);tip(inp,m("nosr"),6000);kb(inp);return}
 clearTimeout(inp._vt);
-r.lang=o.lang||(LC==="en"?"en-IN":"hi-IN");r.continuous=false;r.interimResults=true;r.maxAlternatives=4;
-const s=S2={r,inp,btn,txt:"",alts:[],err:"",cancel:false,to:0,w:0,started:false,retry:o.retry||0,ph:inp.dataset.phs||inp.placeholder};
+r.lang=o.lang||(LC==="en"?"en-IN":"hi-IN");r.continuous=false;r.interimResults=true;r.maxAlternatives=5;
+const s=S2={r,inp,btn,txt:"",alts:[],err:"",cancel:false,to:0,w:0,started:false,retry:o.retry||0,ph:inp.dataset.phs||inp.placeholder,prev:(o.prev!==undefined?o.prev:inp.value)};
 r.onstart=()=>{s.started=true;if(OFF)setOff(false)};
 r.onresult=e=>{if(S2!==s)return;let x="";for(let i=0;i<e.results.length;i++)x+=(i?" ":"")+e.results[i][0].transcript;s.txt=x.trim();
 s.alts=e.results.length===1?[...e.results[0]].map(a=>a.transcript.trim()).filter(Boolean):[];
-tip(inp,s.txt||m("ls"),0)};
+inp.value=s.txt;tip(inp,s.txt||m("ls"),0)};
 r.onerror=e=>{s.err=(e&&e.error)||"x"};
 r.onend=()=>endNow(s);
 try{r.start()}catch(e){S2=null;idle(btn);setOff(true);tip(inp,m("slow"),6000);kb(inp);return}
@@ -2039,12 +2040,20 @@ document.addEventListener("visibilitychange",()=>{if(document.hidden)finish(fals
 /* असली शब्द से मिलने वाले चैनल (नाम के पहले अक्षरों वाले छोटे रूप जैसे SAI से नहीं) */
 const realHit=(d,q)=>{const h=HM[d[0]];if(!h)return false;const w=h.w.slice(0,-1);return String(q).split(/[,،]/).filter(x=>x.trim()).some(p=>nz(p).split(/[\s&\-]+/).filter(Boolean).every(k=>w.some((x,i)=>w.slice(i).join("").startsWith(k))||(k.length>3&&h.x.some(y=>y.startsWith(k)))))};
 const vscore=(r,rank)=>{const real=r.q&&r.n>0?D.some(d=>realHit(d,r.q)):false;return(r.n>0?(real?30:20):(r.pf||r.gen?10:0))-rank*0.1};
+/* जो बोला वही: सिर्फ़ "दिखाओ / चैनल / सभी" जैसे फ़ालतू शब्द और प्लेटफ़ॉर्म का नाम हटता है, बाकी शब्द जस के तस */
+function asHeard(x){const rt=String(x||"").replace(/[,;:!?।"“”()\[\]{}&\-\/|]/g," ").split(/\s+/).filter(Boolean);let pf="",gen=false,fo=false;const k=[];
+rt.forEach(w=>{const z=nz(w);if(PT[z]){pf=pf||PT[z];return}if(ALLW.has(z))gen=true;if(FORW.has(z)){fo=true;return}if(FILL.has(z))return;k.push(w)});
+return{q:k.join(" "),pf,gen,fo}}
 /* बोला/लिखा वाक्य समझकर खोज-बॉक्स भरें */
 function apply(inp,raw,alts,quiet){
 const id=inp.id,isQ=id==="q"||id==="cq";
-let best=interpret(raw,id);
-if(quiet&&isQ&&best.exact)return;
-if(isQ&&alts&&alts.length&&!best.exact){let bs=vscore(best,0);alts.forEach((a,k)=>{if(!a||a===raw)return;const r=interpret(a,id),s=vscore(r,k+1);if(s>bs){bs=s;best=r}})}
+let best=null,H=[];
+if(isQ){H=[raw].concat(alts||[]).map(asHeard).filter(h=>h.q&&!h.fo);const hh=H.find(h=>D.some(d=>hit(d,h.q)));
+ if(hh){if(quiet)return;best={q:hh.q,pf:hh.pf,gen:hh.gen,n:D.filter(d=>hit(d,hh.q)).length,o:{},exact:true}}}
+if(!best){best=interpret(raw,id);
+ if(quiet&&isQ&&best.exact)return;
+ if(isQ&&alts&&alts.length&&!best.exact){let bs=vscore(best,0);alts.forEach((a,k)=>{if(!a||a===raw)return;const r=interpret(a,id),s=vscore(r,k+1);if(s>bs){bs=s;best=r}})}
+ if(isQ&&H[0]&&!(best.n>0)&&!best.pf)best={q:H[0].q,pf:H[0].pf,gen:H[0].gen,n:0,o:{},exact:false}}
 let {q,pf:ppf,gen,n}=best;
 const heard=String(raw).trim();
 if(!q&&!ppf){
