@@ -3,6 +3,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>सतलोक सोशियल ऐप</title>
 <link rel="icon" type="image/png" href="icons/icon-192.png">
+<link rel="manifest" href="manifest.json" id="mfl">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="theme-color" content="#c2410c">
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Devanagari:wght@400;600;800&display=swap" rel="stylesheet">
 <style>
@@ -1783,13 +1786,12 @@ function inst(){if(DIP){const e=DIP;DIP=null;try{e.prompt();e.userChoice&&e.user
  const ios=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform=="MacIntel"&&navigator.maxTouchPoints>1);ask(t(ios?"insI":"insA"),t("insOk"),()=>{})}
 {
  /* manifest: guest installs limited (?g=1) version, main user installs the full version */
- try{if(/^https?:$/.test(location.protocol)){const base=location.href.split(/[?#]/)[0],u=GUEST?base+"?g=1":base;
-  const mf={name:"सतलोक सोशियल ऐप",short_name:"Satlok",id:u,start_url:u,scope:base,display:"standalone",orientation:"portrait",background_color:"#ffffff",theme_color:"#c2410c",icons:[{src:APPICON,sizes:"192x192 512x512",type:"image/jpeg",purpose:"any"}]};
-  const l=document.createElement("link");l.rel="manifest";l.href=GUEST?"manifest-guest.json":"manifest.json";document.head.appendChild(l);
-  const a=document.createElement("link");a.rel="apple-touch-icon";a.href="icons/apple-touch-icon.png";document.head.appendChild(a);
+ try{if(/^https?:$/.test(location.protocol)){
+  {const l=document.getElementById("mfl");if(l)l.href=GUEST?"manifest-guest.json":"manifest.json"}
+  
   const m=document.createElement("meta");m.name="apple-mobile-web-app-capable";m.content="yes";document.head.appendChild(m);
   const m2=document.createElement("meta");m2.name="mobile-web-app-capable";m2.content="yes";document.head.appendChild(m2);
-  const m3=document.createElement("meta");m3.name="theme-color";m3.content="#c2410c";document.head.appendChild(m3)}}catch(e){}
+  }}catch(e){}
  addEventListener("beforeinstallprompt",e=>{e.preventDefault();DIP=e});
  addEventListener("appinstalled",()=>{DIP=null;insShow();toast(t("insDn"))});
  if(GUEST){$("ibi").onclick=inst;$("ibc").onclick=()=>{try{sessionStorage.setItem("ibd","1")}catch(e){}insShow()};insShow()}
@@ -1964,9 +1966,12 @@ return keep.map(s=>s.split(" ").map(w=>disp(w,o.O)).join(" ")).join(", ")}
 function interpret(raw,id){
 const o=parse(raw),isQ=id==="q"||id==="cq";
 const tk0=id==="aq"?mergeSplit(o.t).map(w=>{const sy=synOf(w);return sy?sy[0]:fixTok(w)}):o.t;
-const q=isQ?plan(o):tk0.map(w=>disp(w,o.O)).join(" ");
+const asis=o.t.map(w=>disp(w,o.O)).join(" ");
+/* सबसे पहले: जो सुना वही खोजो। अगर सीधे चैनल मिल जाएँ तो कोई शब्द बदला नहीं जाता */
+const exact=isQ&&asis&&D.some(d=>hit(d,asis));
+const q=exact?asis:isQ?plan(o):tk0.map(w=>disp(w,o.O)).join(" ");
 const n=isQ&&q?(D.filter(d=>hit(d,q)).length||find(D,q).length):-1;
-return{q,pf:o.pf,gen:o.gen,n,o}}
+return{q,pf:o.pf,gen:o.gen,n,o,exact}}
 window.SAVoice={parse,plan,interpret};
 /* ---------- संदेश-पट्टी (placeholder में लंबा लिखा कट जाता था) ---------- */
 let tipEl=null,tipT=0,tipIn=null;
@@ -2038,8 +2043,10 @@ const vscore=(r,rank)=>{const real=r.q&&r.n>0?D.some(d=>realHit(d,r.q)):false;re
 function apply(inp,raw,alts,quiet){
 const id=inp.id,isQ=id==="q"||id==="cq";
 let best=interpret(raw,id);
-if(isQ&&alts&&alts.length){let bs=vscore(best,0);alts.forEach((a,k)=>{if(!a||a===raw)return;const r=interpret(a,id),s=vscore(r,k+1);if(s>bs){bs=s;best=r}})}
-const {q,pf:ppf,gen,n}=best;
+if(quiet&&isQ&&best.exact)return;
+if(isQ&&alts&&alts.length&&!best.exact){let bs=vscore(best,0);alts.forEach((a,k)=>{if(!a||a===raw)return;const r=interpret(a,id),s=vscore(r,k+1);if(s>bs){bs=s;best=r}})}
+let {q,pf:ppf,gen,n}=best;
+const heard=String(raw).trim();
 if(!q&&!ppf){
  if(gen&&isQ){if(id==="q"&&typeof rst==="function")rst();else{inp.value="";inp.dispatchEvent(new Event("input",{bubbles:true}))}if(!quiet)tip(inp,m("all"),3500);return}
  if(!quiet)tip(inp,m("none"),5000);return}
@@ -2047,7 +2054,9 @@ if(quiet&&isQ&&n===0)return;
 if(id==="q"&&ppf)pf=ppf;
 inp.value=q;inp.dispatchEvent(new Event("input",{bubbles:true}));
 if(!quiet&&isQ){const sh=(q?q.split(", ").join(" · "):"")+(ppf&&typeof P!=="undefined"&&P[ppf]?(q?" · ":"")+P[ppf][0]:"");
- tip(inp,n===0?m("nf"):sh+" · "+n+" "+m("ch"),n===0?4000:3000)}}
+ const same=nz(heard).replace(/[\s,]+/g," ").trim()===nz(q).replace(/[\s,]+/g," ").trim();
+ const hd=same||!heard?"":(hi()?"सुना: ":"Heard: ")+"\u201c"+heard+"\u201d \u2192 ";
+ tip(inp,n===0?hd+m("nf"):hd+sh+" \u00b7 "+n+" "+m("ch"),n===0?5000:4500)}}
 /* ---------- placeholder अपने-आप फिट: कटे हुए अक्षर नहीं ---------- */
 const PHL={hi:["","चैनल खोजें","खोजें"],en:["","Search channels","Search"]};
 let cv=null;
@@ -2685,5 +2694,5 @@ auth.onAuthStateChanged(async u=>{
  FB.syncing=false;FB.authDone=true;ui();ev()});
 })();
 </script>
-<script>if("serviceWorker"in navigator&&/^https?:$/.test(location.protocol)){addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))}</script>
+<script>if("serviceWorker"in navigator&&/^https?:$/.test(location.protocol)){addEventListener("load",()=>navigator.serviceWorker.register("sw.js",{scope:"./"}).catch(()=>{}))}</script>
 </body></html>
