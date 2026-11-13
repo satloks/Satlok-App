@@ -2423,7 +2423,7 @@ el.innerHTML='<div class="ah"><button type="button" class="ib" id="adx" aria-lab
 document.body.appendChild(el);
 {const vv=window.visualViewport;if(vv){const fit=()=>{if(el.hidden){el.style.bottom="";return}const kb=Math.max(0,window.innerHeight-vv.height-vv.offsetTop);el.style.bottom=kb>80?kb+"px":""};vv.addEventListener("resize",fit);vv.addEventListener("scroll",fit)}el.addEventListener("focusin",e=>{const t=e.target;if(t&&/^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))setTimeout(()=>{try{t.scrollIntoView({block:"center",behavior:"smooth"})}catch(x){}},320)})}
 const B=document.getElementById("adb"),T_=document.getElementById("adt"),X=document.getElementById("adx");
-let view="lock",tab="db",flt="all",q="",ed=null,pend="";
+let view="lock",tab="db",flt="all",q="",ed=null,pend="";let RES=null;const DK="admdraft";const dClr=()=>{try{localStorage.removeItem(DK)}catch(e){}};
 const SK="adm_sec",LV=[0,0,0,30,60,300,900,3600];
 let SEC=(()=>{let o={};try{o=JSON.parse(localStorage.getItem(SK)||"{}")||{}}catch(e){}o.at=Object.assign({n:0,until:0,ts:0},o.at);o.cfg=Object.assign({auto:120,bg:1},o.cfg);o.cfg.auto=0;o.cfg.bg=0;o.log=Array.isArray(o.log)?o.log:[];return o})();
 const sv=()=>{try{localStorage.setItem(SK,JSON.stringify(SEC))}catch(e){}};
@@ -2456,13 +2456,13 @@ const unlocked=()=>{try{const t=+sessionStorage.getItem("admu")||0,a=SEC.cfg.aut
 let pinOk=false,resetMode=false,sOut=false;let lastTouch=0,tmr=0,pendTab="db",hAt=0;let FG={step:0,ch:"",next:0},pfFrom="db";
 const touch=()=>{const n=Date.now();if(n-lastTouch<4000)return;lastTouch=n;try{if(sessionStorage.getItem("admu"))sessionStorage.setItem("admu",String(n))}catch(e){}};
 ["pointerdown","keydown","scroll"].forEach(ev=>el.addEventListener(ev,touch,true));
-function lockNow(why){pinOk=false;resetMode=false;sOut=false;try{sessionStorage.removeItem("admu");sessionStorage.removeItem("admA")}catch(e){}if(why)log(why);if(isOpen()){ed=null;closeA();if(why&&why!=="man")toast(A("e_"+why))}}
+function lockNow(why){dClr();pinOk=false;resetMode=false;sOut=false;try{sessionStorage.removeItem("admu");sessionStorage.removeItem("admA")}catch(e){}if(why)log(why);if(isOpen()){ed=null;closeA();if(why&&why!=="man")toast(A("e_"+why))}}
 /* auto-lock removed: panel stays open until closed manually */
 document.addEventListener("visibilitychange",()=>{if(document.hidden)hAt=Date.now();});
 const ADL=document.getElementById("adl");ADL.innerHTML=IC.lock.replace('width="26" height="26"','width="18" height="18"');ADL.setAttribute("aria-label","Lock");ADL.onclick=()=>lockNow("man");
 const pst=(i,o)=>{const v=i.value;o.className="pst"+(v.length<4?"":" st"+strength(v));o.textContent=v.length<4?"":A(["stW","stO","stS"][strength(v)])};
 function stepUp(cb){cb()}
-let busy=false;const commit=(reload,msg)=>{try{localStorage.setItem("adm1",JSON.stringify(ADM))}catch(e){toast("Storage full");return false}
+let busy=false;const commit=(reload,msg)=>{if(reload)dClr();try{localStorage.setItem("adm1",JSON.stringify(ADM))}catch(e){toast("Storage full");return false}
  if(reload)busy=true;try{localStorage.setItem("fbad","1")}catch(e){}
  const fin=m=>{if(reload){try{sessionStorage.setItem("admo","1");sessionStorage.setItem("admv",JSON.stringify({tab:tab,flt:flt,q:q}));if(m)sessionStorage.setItem("admt",m)}catch(e){}location.reload()}};
  const F=window.FB;
@@ -2472,8 +2472,8 @@ let busy=false;const commit=(reload,msg)=>{try{localStorage.setItem("adm1",JSON.
 const isOpen=()=>!el.hidden;
 function openA(){if(GUEST)return;el.hidden=false;document.documentElement.classList.add("adm");LKS();view=(unlocked()&&window.FB&&FB.user&&FB.isAdmin)?"main":"lock";tab="db";q="";render()}
 function closeA(){el.hidden=true;el.style.bottom="";document.documentElement.classList.remove("adm");LKS()}
-window.admBack=()=>{if(!isOpen())return false;if(view==="fgt"){if(FG.step){FG.step=0;render()}else{view="lock";render()}return true}if(view==="pro"){tab=pfFrom;view="main";render();return true}if(view==="edit"){view="main";render();return true}lockNow("man");return true};
-X.onclick=()=>{if(view==="fgt"){if(FG.step){FG.step=0;render()}else{view="lock";render()}return}if(view==="pro"){tab=pfFrom;view="main";render();return}if(view==="edit"){view="main";render()}else lockNow("man")};
+window.admBack=()=>{if(!isOpen())return false;if(view==="fgt"){if(FG.step){FG.step=0;render()}else{view="lock";render()}return true}if(view==="pro"){tab=pfFrom;view="main";render();return true}if(view==="edit"){dClr();view="main";render();return true}lockNow("man");return true};
+X.onclick=()=>{if(view==="fgt"){if(FG.step){FG.step=0;render()}else{view="lock";render()}return}if(view==="pro"){tab=pfFrom;view="main";render();return}if(view==="edit"){dClr();view="main";render()}else lockNow("man")};
 const place_=(c,s)=>c==0?(s>=0?(hi()?S[s][1]:S[s][0]):(hi()?C[0][1]:C[0][0])):(hi()?C[c][1]:C[c][0]);
 const lgc={};const lgs=id=>{const u=LG[id];if(!u)return"";if(u.indexOf("data:")!==0)return esc(u);if(lgc[id]&&lgc[id].k===u)return lgc[id].v;try{const i=u.indexOf(","),mime=u.slice(5,u.indexOf(";")),b=atob(u.slice(i+1)),a=new Uint8Array(b.length);for(let j=0;j<b.length;j++)a[j]=b.charCodeAt(j);const v=URL.createObjectURL(new Blob([a],{type:mime}));lgc[id]={k:u,v};return v}catch(e){return esc(u)}};
 const av=(id,name)=>'<span class="aav">'+(LG[id]?'<img src="'+lgs(id)+'" alt="" decoding="async">':esc([...String(name||"?")][0]||"?"))+'</span>';
@@ -2483,6 +2483,7 @@ function panelTitle(){const k=panelKey(),m={owner:["pnOwner","oPrimary"],main:["
 Object.assign(TX.en,{pnOwner:"Owner panel",pnAdmin:"Admin panel",pnMgr:"Manager panel",prOwner:"Owner profile",prAdmin:"Admin profile",prMgr:"Manager profile"});
 Object.assign(TX.hi,{pnOwner:"ओनर पैनल",pnAdmin:"एडमिन पैनल",pnMgr:"मैनेजर पैनल",prOwner:"ओनर प्रोफ़ाइल",prAdmin:"एडमिन प्रोफ़ाइल",prMgr:"मैनेजर प्रोफ़ाइल"});
 function render(){clearInterval(tmr);if(["main","edit","pro"].includes(view)&&!(window.FB&&FB.user&&FB.isAdmin))view="lock";
+ if(view==="main"&&RES){const r=RES;RES=null;startEdit(r.id,r);return}
  const bk=view==="edit"||view==="fgt"||view==="pro";X.innerHTML=bk?IC.bk:IC.x;X.setAttribute("aria-label",bk?A("back"):A("close"));
  ADL.hidden=["lock","fgt","npin"].includes(view);
  if(view==="lock")return lockV();if(view==="npin")return newPinV();if(view==="fgt")return fgtV();if(view==="pro")return proV();if(view==="edit")return editV();
@@ -2766,10 +2767,11 @@ function chV(c){
 }
 /* every custom category already used by any channel (+ one extra id) */
 function custCats(ex){const seen={},out=[];Object.keys(META).forEach(k=>{const c=(META[k]||{}).cat;if(c)seen[c]=1});if(ex)seen[ex]=1;Object.keys(seen).forEach(c=>{if(!CATS.some(x=>x[0]===c))out.push(c)});return out.sort((a,b)=>CATX(a)[1].localeCompare(CATX(b)[1]))}
-function startEdit(id){
+function startEdit(id,dr){
  if(id==null)ed={id:null,en:"",hi:"",c:"",s:-1,sx:-1,logo:"",links:{},cat:"",ds:"",ci:"",pl:K.slice(),hid:false};
  else{const d=all().find(x=>x[0]==id),m=META[id]||{},links={};K.forEach(k=>{if(LINKS[id+k])links[k]=LINKS[id+k]});
   ed={id,en:d[2],hi:d[1]===d[2]?"":d[1],c:String(d[3]),s:d[4],sx:(m.sx!=null&&m.sx>=0?m.sx:-1),logo:LG[id]||"",logo0:LG[id]||"",links,cat:m.cat||"",ds:m.ds||"",ci:m.ci||"",pl:m.pl&&m.pl.length?m.pl.slice():K.slice(),hid:!!m.hid}}
+ if(dr){ed.en=dr.en||"";ed.hi=dr.hi||"";ed.c=dr.c||"";const sv_=(dr.s===""||dr.s==null)?-1:+dr.s;if(ed.c==="0")ed.s=sv_;else ed.sx=sv_;ed.cat=dr.cat||"";ed.kn=dr.kn||"";ed.ds=dr.ds||"";ed.ci=dr.ci||"";ed.qp=dr.qp||"";if(Array.isArray(dr.pl)&&dr.pl.length)ed.pl=dr.pl.filter(k=>K.includes(k));ed.hid=!!dr.hid;ed.links=(dr.links&&typeof dr.links==="object")?dr.links:{};if(typeof dr.logo==="string")ed.logo=dr.logo}
  view="edit";render();B.scrollTop=0;
 }
 function editV(){
@@ -2789,7 +2791,7 @@ function editV(){
  +'</div><div class="grp"><div class="asw"><span>'+A("vis")+'</span><button type="button" class="atg" id="ehd" role="switch"></button></div>'
  +'</div><div class="afoot"><button type="button" class="btn" id="esv">'+A("save")+'</button>'+(ed.id!=null?'<button type="button" class="btn dg" id="edl">'+(window.FB&&(FB.isOwner||FB.isMgr)?A("del"):A("rqT"))+'</button>':'')+'</div></div>';
  const g=id=>document.getElementById(id);
- g("e_en").value=ed.en;g("e_hi").value=ed.hi;g("a_c").value=ed.c;g("a_k").value=ed.cat;g("a_k").addEventListener("change",()=>{const n=g("a_k").value==="__new";g("a_kn").hidden=!n;if(n)setTimeout(()=>g("a_kn").focus(),60)});g("e_ds").value=ed.ds;g("e_ci").value=ed.ci;
+ g("e_en").value=ed.en;g("e_hi").value=ed.hi;g("a_c").value=ed.c;g("a_k").value=ed.cat;if(ed.cat==="__new"){g("a_kn").hidden=false;g("a_kn").value=ed.kn||""}g("a_k").addEventListener("change",()=>{const n=g("a_k").value==="__new";g("a_kn").hidden=!n;if(n)setTimeout(()=>g("a_kn").focus(),60)});g("e_ds").value=ed.ds;g("e_ci").value=ed.ci;
  const fillS=()=>{const cv=g("a_c").value,isIn=cv==="0",L=(!isIn&&cv!=="")?PRS[cv]:null,has=isIn||!!(L&&L.length);g("esw").hidden=!has;g("esw").parentNode.classList.toggle("one",!has);g("a_s").innerHTML='<option value="-1">'+A(isIn?"allIn":"allS")+'</option>'+(isIn?S.map((s2,i)=>'<option value="'+i+'">'+esc(hi()?s2[1]:s2[0])+'</option>').join(""):(L||[]).map((x,i)=>{const a=String(x).split("|");return'<option value="'+i+'">'+esc(hi()&&a[1]?a[1]:a[0])+'</option>'}).join(""));g("a_s").value=String(isIn?ed.s:ed.sx)};
  fillS();
  const logo=()=>{g("elg").innerHTML=av(0,"").replace(/<span class="aav">.*<\/span>/,'<span class="aav">'+(ed.logo?'<img src="'+ed.logo+'" alt="">':esc([...(g("e_en").value||"?")][0]||"?"))+'</span>');g("erm").hidden=!ed.logo};
@@ -2801,7 +2803,7 @@ function editV(){
  [...B.querySelectorAll("#apl button")].forEach(b=>{const k=b.dataset.k,u=()=>b.classList.toggle("on",ed.pl.includes(k));u();b.onclick=()=>{ed.pl=ed.pl.includes(k)?ed.pl.filter(x=>x!=k):ed.pl.concat(k);u()}});
  const tg=()=>{g("ehd").classList.toggle("on",!ed.hid);g("ehd").setAttribute("aria-checked",String(!ed.hid))};tg();g("ehd").onclick=()=>{ed.hid=!ed.hid;tg()};
  [...B.querySelectorAll("input[data-k]")].forEach(i=>i.value=ed.links[i.dataset.k]||"");
- if(Object.keys(ed.links).length)B.querySelector("details").open=true;
+ if(Object.keys(ed.links).length||ed.qp)B.querySelector("details").open=true;if(ed.qp&&g("e_qp"))g("e_qp").value=ed.qp;
   {const ins=()=>[...B.querySelectorAll("input[data-k]")],put=(r,from)=>{const t=ins().find(x=>x.dataset.k===r.k);if(t){t.value=r.url;if(from&&from!==t)from.value="";if(!ed.pl.includes(r.k)){ed.pl=ed.pl.concat(r.k);const pb=B.querySelector('#apl button[data-k="'+r.k+'"]');if(pb)pb.classList.add("on")}}};
    ins().forEach(i=>i.addEventListener("change",()=>{const v=i.value.trim();if(!v)return;const r=NL(i.dataset.k,v);if(!r){toast(A("badU"));return}put(r,i)}));
    const qp=g("e_qp");if(qp){const go2=()=>{const v=qp.value.trim();if(!v)return;const r=NL("",v);if(!r){toast(A("badU"));return}put(r,null);qp.value="";toast(P[r.k][0]+" ✓")};qp.addEventListener("change",go2);qp.addEventListener("paste",()=>setTimeout(go2,0))}}
@@ -2833,7 +2835,7 @@ function saveEd(){if(busy)return;
  if(ed.id!=null&&ed.logo&&ed.logo===ed.logo0&&!ADM.add.some(a=>a.id==ed.id)){const pv=ADM.edit[ed.id];if(pv&&typeof pv.logo==="string"&&pv.logo)rec.logo=pv.logo;else delete rec.logo}
  if(ed.id==null){const mx=Math.max(1000,...all().map(d=>d[0]),...DELD.map(d=>d[0]),...ADM.add.map(a=>a.id));ADM.add.push(Object.assign({id:mx+1},rec))}
  else{const i=ADM.add.findIndex(a=>a.id==ed.id);if(i>=0)ADM.add[i]=Object.assign({id:ed.id},rec);else ADM.edit[ed.id]=rec}tab="ch";flt="chg";q="";
- commit(true,A("svd"));
+ dClr();commit(true,A("svd"));
 }
 function admImport(o){try{if(!o||typeof o!=="object"||(o.kind!=="satlok-admin"&&!(o.app&&typeof o.app==="object")&&o.app!=="satlok-admin")||!Array.isArray(o.add)||!o.edit||typeof o.edit!=="object"||!Array.isArray(o.del))return false;
   const okR=r=>r&&typeof r.en==="string"&&+r.c>=0&&+r.c<C.length;
@@ -2854,6 +2856,13 @@ function scV(c){
 window.admLabel=function(){};
 {const av=document.getElementById("appv");
 if(av){let n=0,tm=0;av.addEventListener("click",()=>{n++;clearTimeout(tm);tm=setTimeout(()=>{n=0},1500);if(n>=5){n=0;try{navigator.vibrate&&navigator.vibrate(15)}catch(e){}sheet(false);setTimeout(openA,120)}})}}
+/* ===== draft autosave: whatever is typed/pasted in the channel form survives app-switching, refresh or the phone closing the page ===== */
+function dSave(){try{if(busy||view!=="edit"||!ed||isOpen()===false)return;const g=id=>document.getElementById(id);if(!g("e_en"))return;const links={};B.querySelectorAll("input[data-k]").forEach(i=>{if(i.value.trim())links[i.dataset.k]=i.value});
+ const d={t:Date.now(),id:ed.id,en:g("e_en").value,hi:g("e_hi").value,c:g("a_c").value,s:g("a_s")?g("a_s").value:"",cat:g("a_k").value,kn:g("a_kn")?g("a_kn").value:"",ds:g("e_ds").value,ci:g("e_ci").value,qp:g("e_qp")?g("e_qp").value:"",pl:ed.pl,hid:ed.hid,links,logo:ed.logo||""};
+ localStorage.setItem(DK,JSON.stringify(d))}catch(e){}}
+{let dt=0;const dq=()=>{if(view!=="edit")return;clearTimeout(dt);dt=setTimeout(dSave,300)};["input","change","click","paste"].forEach(n=>B.addEventListener(n,dq,true));
+ document.addEventListener("visibilitychange",()=>{if(document.hidden){clearTimeout(dt);dSave()}});addEventListener("pagehide",()=>{clearTimeout(dt);dSave()})}
+try{if(!GUEST){const raw=localStorage.getItem(DK);if(raw){const d=JSON.parse(raw);if(d&&typeof d==="object"&&Date.now()-d.t<43200000){if(d.id!=null&&!all().find(x=>x[0]==d.id))d.id=null;RES=d;if(!isOpen())openA()}else dClr()}}}catch(e){dClr()}
 try{if(sessionStorage.getItem("admo")==="1"){sessionStorage.removeItem("admo");if(unlocked()){openA();try{const v=JSON.parse(sessionStorage.getItem("admv")||"null");sessionStorage.removeItem("admv");if(v&&["db","ch","sec","sc"].includes(v.tab)){tab=v.tab;flt=typeof v.flt==="string"?v.flt:"all";q=typeof v.q==="string"?v.q:"";render()}}catch(e){}}const m=sessionStorage.getItem("admt");if(m){sessionStorage.removeItem("admt");setTimeout(()=>toast(m),300)}}}catch(e){}
 })();
 </script>
@@ -3040,7 +3049,7 @@ const admHas=()=>ADM.add.length||Object.keys(ADM.edit).length||ADM.del.length||O
 async function onAdmin(){try{const c=await db.collection("config").doc("app").get();
  if(ls("fbad")==="1"||(!c.exists&&admHas())){await FB.pushAdm(ADM);ls("fbad",null)}}catch(e){}}
 async function cfgPull(){
- try{const c=await db.collection("config").doc("app").get();if(!c.exists)return;
+ try{if(localStorage.getItem("admdraft"))return;const c=await db.collection("config").doc("app").get();if(!c.exists)return;
   const x=c.data(),ver=String(x.ver||0);if(ls("fbver")===ver)return;
   const [sa,se]=await Promise.all([db.collection("adm_add").get(),db.collection("adm_edit").get()]);
   const rem={add:[],edit:{},del:Array.isArray(x.del)?x.del.map(Number):[],app:{}};
@@ -3075,7 +3084,7 @@ auth.onAuthStateChanged(async u=>{
 /* ===== app version: single source here + build number in sw.js; auto-checks for a newer build ===== */
 (function(){
 "use strict";
-var V={v:"2.1",b:23,d:"2026-11-13"},MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],PB=0,last=0;
+var V={v:"2.1",b:31,d:"2026-11-13"},MON=["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"],PB=0,last=0;
 window.APP_VER=V;
 function lab(){var p=V.d.split("-");return "v"+V.v+"."+V.b+" \u00b7 "+(+p[2])+" "+MON[+p[1]-1]+" "+p[0]}
 function paint(){var n=document.getElementById("appvn");if(n)n.textContent=lab()}
