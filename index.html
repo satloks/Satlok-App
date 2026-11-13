@@ -5,7 +5,7 @@
 <link rel="icon" type="image/png" href="icon-192.png">
 <script>window.__dip=null;addEventListener("beforeinstallprompt",function(e){e.preventDefault();window.__dip=e});</script>
 <link rel="manifest" href="manifest.json" id="mfl"><script>try{if(/[?&]g=1(&|$)/.test(location.search))document.getElementById("mfl").href="manifest-guest.json"}catch(e){}</script>
-<meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="सतलोक ऐप"><meta name="apple-mobile-web-app-status-bar-style" content="default">
+<meta name="apple-mobile-web-app-capable" content="yes"><meta name="apple-mobile-web-app-title" content="SA Social"><meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="theme-color" content="#2b1405">
 <meta name="mobile-web-app-capable" content="yes">
@@ -427,6 +427,7 @@ body,button,input,select,textarea{font-family:Roboto,system-ui,-apple-system,"No
 .cb b{font-size:16px;min-width:0;text-align:center;overflow:visible}
 /* website share sheet: share button sits above the QR, never over it */
 .wcd{padding-top:56px}
+html:not(.guest) #wdl{display:none!important}#wdl{margin-top:2px}
 #wcp{top:10px;right:10px}
 #wqr{width:min(200px,56vw);margin:0 auto 12px}
 /* profile phone field */
@@ -843,7 +844,7 @@ setTimeout(function(){if(e.parentNode&&!e.classList.contains("out"))go()},4500)}
 <aside class="sheet" id="fsh" role="dialog" aria-modal="true" aria-labelledby="fht" aria-hidden="true"><div class="shh"><h2 id="fht" data-t="flt"></h2><button class="ib" id="fx" aria-label="Close"><svg class="ic" width="20" height="20" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="shb"><div class="fg"><label><h3 data-t="co2"></h3><select id="fc" aria-label="Country"></select></label><label><h3 data-t="st2"></h3><select id="fs" aria-label="State"></select></label></div><div id="pcs"><h3 data-t="plat"></h3><div class="pg" id="pc"></div></div></div><div class="sf"><button class="btn" id="fok"></button></div></aside>
 <aside class="drw" id="dr" role="dialog" aria-modal="true" aria-labelledby="dt" aria-hidden="true"><div class="dh"><div><b id="dt" data-t="ttl"></b><small data-t="sub"></small></div><button class="ib" id="dx" aria-label="Close"><svg class="ic" width="20" height="20" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div id="dn"></div></aside>
 <aside class="sheet" id="msh" role="dialog" aria-modal="true" aria-labelledby="mt" aria-hidden="true"><div class="shh"><h2 id="mt" data-t="shw"></h2><button class="ib" id="mx" aria-label="Close"><svg class="ic" width="20" height="20" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="shb wsb"><div class="wcd"><button type="button" id="mcp" aria-label="Share"><svg class="ic" width="18" height="18" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.600 10.500l6.800-4M8.600 13.500l6.800 4"/></svg></button><div id="mqr"></div><p class="wh" data-t="msc"></p></div><button type="button" class="btn" id="mop"><span data-t="mins"></span></button></div></aside>
-<aside class="sheet" id="wsh" role="dialog" aria-modal="true" aria-labelledby="wt" aria-hidden="true"><div class="shh"><h2 id="wt" data-t="shw"></h2><button class="ib" id="wx" aria-label="Close"><svg class="ic" width="20" height="20" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="shb wsb"><div class="wcd"><button type="button" id="wcp" aria-label="Share"><svg class="ic" width="18" height="18" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.600 10.500l6.800-4M8.600 13.500l6.800 4"/></svg></button><div id="wqr"></div><p class="wh" data-t="wsc"></p></div><a class="btn" id="wop" target="_blank" rel="noopener noreferrer"><span data-t="wop"></span></a></div></aside>
+<aside class="sheet" id="wsh" role="dialog" aria-modal="true" aria-labelledby="wt" aria-hidden="true"><div class="shh"><h2 id="wt" data-t="shw"></h2><button class="ib" id="wx" aria-label="Close"><svg class="ic" width="20" height="20" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="shb wsb"><div class="wcd"><button type="button" id="wcp" aria-label="Share"><svg class="ic" width="18" height="18" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.600 10.500l6.800-4M8.600 13.500l6.800 4"/></svg></button><div id="wqr"></div><p class="wh" data-t="wsc"></p></div><a class="btn" id="wop" target="_blank" rel="noopener noreferrer"><span data-t="wop"></span></a><button type="button" class="btn" id="wdl"><svg class="ic" width="20" height="20" viewBox="0 0 24 24"><path d="M12 4v11M7.5 10.5L12 15l4.5-4.5M5 19h14"/></svg><span data-t="wdl"></span></button></div></aside>
 <aside class="sheet" id="xsh" role="dialog" aria-modal="true" aria-labelledby="xt" aria-hidden="true"><div class="shh"><h2 id="xt" data-t="shr"></h2><button class="ib" id="xx" aria-label="Close"><svg class="ic" width="20" height="20" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div><div class="shb"><div id="xg" class="xg"></div></div></aside>
 <div id="cfm" aria-hidden="true" role="alertdialog" aria-labelledby="cft"><div class="cfb"><p id="cft"></p><div class="cfa"><button class="btn g" id="cfx"></button><button class="btn" id="cfy"></button></div></div></div>
 <div id="ts" role="status"></div>
@@ -1816,7 +1817,9 @@ const nz=x=>String(x).toLowerCase().normalize("NFD").replace(/[\u093C\u0951-\u09
 const AL={4:"cg",0:"ap",1:"ar arunachal",3:"br",6:"gj",7:"hr",8:"hp",9:"jh",10:"ka",11:"kl",12:"mp",13:"mh",14:"mn",15:"ml",16:"mz",17:"nl",18:"उड़ीसा orissa od",19:"pb",20:"rj",21:"sk",22:"tn",23:"ts",24:"tr",25:"up",26:"uttaranchal उत्तरांचल ut",27:"wb bengal",28:"dl ncr dilli",29:"jk kashmir",30:"ld",31:"chd",32:"py pondicherry",34:"lk",33:"andaman nicobar",35:"dnhdd dadra daman diu"};
 const ADM=(()=>{let a={};try{a=JSON.parse(localStorage.getItem("adm1")||"{}")||{}}catch(e){}a.add=Array.isArray(a.add)?a.add:[];a.edit=a.edit&&typeof a.edit==="object"?a.edit:{};a.del=Array.isArray(a.del)?a.del:[];a.app=a.app&&typeof a.app==="object"?a.app:{};return a})();
 const META={},HIDD=[],DELD=[],CATS=[["news","समाचार","News"],["spiritual","आध्यात्मिक","Spiritual"],["podcast","पॉडकास्ट","Podcast"],["debate","चर्चा / डिबेट","Debate"],["ashram","आश्रम","Ashram"],["other","अन्य","Other"]];
-const KF=d=>{const m=META[d[0]];return m&&m.pl&&m.pl.length?K.filter(k=>m.pl.includes(k)):K},ESC=x=>String(x).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c])),cat_=id=>{const c=CATS.find(x=>x[0]==id);return c?(LC=="hi"?c[1]:c[2]):""},SXN=d=>{const m=META[d[0]]||{},l=d[3]!=0&&m.sx>=0?PRS[d[3]]:null,x=l&&l[m.sx];if(!x)return"";const a=String(x).split("|");return LC=="hi"&&a[1]?a[1]:a[0]},XS=d=>{const m=META[d[0]]||{};return[SXN(d),m.ci,cat_(m.cat)].filter(Boolean).map(x=>" · "+ESC(x)).join("")},XM=d=>{const m=META[d[0]]||{},c=CATS.find(x=>x[0]==m.cat),l=d[3]!=0&&m.sx>=0?PRS[d[3]]:null,sx=l&&l[m.sx]?String(l[m.sx]).split("|").join(" "):"";return sx+" "+(m.ci||"")+" "+(c?c[1]+" "+c[2]:"")+" "+(m.ds||"")},DS=d=>{const m=META[d[0]];return m&&m.ds?'<p class="rdesc">'+ESC(m.ds)+"</p>":""};
+/* custom categories are stored as "u:<name>"; CATX resolves built-in and custom ids alike */
+const CATX=id=>{id=String(id||"");if(!id)return null;const c=CATS.find(x=>x[0]==id);if(c)return c;const n=id.replace(/^u:/,"");return[id,n,n]};
+const KF=d=>{const m=META[d[0]];return m&&m.pl&&m.pl.length?K.filter(k=>m.pl.includes(k)):K},ESC=x=>String(x).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;","\"":"&quot;"}[c])),cat_=id=>{const c=CATX(id);return c?(LC=="hi"?c[1]:c[2]):""},SXN=d=>{const m=META[d[0]]||{},l=d[3]!=0&&m.sx>=0?PRS[d[3]]:null,x=l&&l[m.sx];if(!x)return"";const a=String(x).split("|");return LC=="hi"&&a[1]?a[1]:a[0]},XS=d=>{const m=META[d[0]]||{};return[SXN(d),m.ci,cat_(m.cat)].filter(Boolean).map(x=>" · "+ESC(x)).join("")},XM=d=>{const m=META[d[0]]||{},c=CATX(m.cat),l=d[3]!=0&&m.sx>=0?PRS[d[3]]:null,sx=l&&l[m.sx]?String(l[m.sx]).split("|").join(" "):"";return sx+" "+(m.ci||"")+" "+(c?c[1]+" "+c[2]:"")+" "+(m.ds||"")},DS=d=>{const m=META[d[0]];return m&&m.ds?'<p class="rdesc">'+ESC(m.ds)+"</p>":""};
 {const ap=ADM.app;if(ap.th)T.hi.ttl=ap.th;if(ap.te)T.en.ttl=ap.te;if(ap.sh)T.hi.sub=ap.sh;if(ap.se)T.en.sub=ap.se}
 (function(){const fix=(d,e)=>{if(e.hi!=null&&e.hi!=="")d[1]=e.hi;if(e.en!=null&&e.en!=="")d[2]=e.en;if(e.c!=null){d[3]=+e.c;d[4]=+e.c===0?(e.s==null?-1:+e.s):0}};
 const lg=(id,e)=>{META[id]={sx:(+e.c!==0&&e.sx!=null&&+e.sx>=0)?+e.sx:-1,cat:e.cat||"",ds:e.ds||"",ci:e.ci||"",pl:Array.isArray(e.pl)?e.pl.filter(k=>K.includes(k)):null,hid:!!e.hid};if(typeof e.logo==="string"){if(e.logo)LG[id]=e.logo;else delete LG[id]}if(e.links)Object.keys(e.links).forEach(k=>{if(e.links[k]){const r=NL(k,e.links[k]);if(r)LINKS[id+r.k]=r.url;else LINKS[id+k]=e.links[k]}})};
@@ -1946,7 +1949,7 @@ var MAINLINK=WEBLINK.split(/[?#]/)[0];
 function msheet(o){const was=$("msh").classList.contains("o");$("msh").classList.toggle("o",o);$("ov").classList.toggle("o",anyo());$("msh").setAttribute("aria-hidden",!o);if(o)setTimeout(()=>$("mx").focus({preventScroll:true}),260);else if(was)$("mb").focus({preventScroll:true})}
 $("mx").onclick=()=>msheet(false);$("mcp").onclick=()=>share(MAINLINK,t("ttl"));$("mop").onclick=()=>{msheet(false);inst()};
 function wsheet(o){const was=$("wsh").classList.contains("o");$("wsh").classList.toggle("o",o);$("ov").classList.toggle("o",anyo());$("wsh").setAttribute("aria-hidden",!o);if(o)setTimeout(()=>$("wx").focus({preventScroll:true}),260);else if(was)$("mb").focus({preventScroll:true})}
-$("wop").href=WEBLINK;$("wx").onclick=()=>wsheet(false);$("wcp").onclick=()=>share(WEBLINK,t("ttl"));
+$("wop").href=WEBLINK;$("wx").onclick=()=>wsheet(false);$("wdl").onclick=()=>{wsheet(false);setTimeout(()=>{if(STANDALONE()){toast(t("insHave"));return}inst()},150)};$("wcp").onclick=()=>share(WEBLINK,t("ttl"));
 function anyo(){return["sh","fsh","dr","wsh","xsh","msh"].some(i=>$(i).classList.contains("o"))}
 function drawer(o){const was=$("dr").classList.contains("o");$("dr").classList.toggle("o",o);$("ov").classList.toggle("o",anyo());$("dr").setAttribute("aria-hidden",!o);if(o)setTimeout(()=>$("dx").focus({preventScroll:true}),260);else if(was)$("mb").focus({preventScroll:true})}
 function dnav(){$("dn").innerHTML=NAV.filter(n=>n[0]!="app").map(n=>`<button data-p="${n[0]}"><svg class="ic" viewBox="0 0 24 24">${n[1]}</svg>${t(TK[n[0]])}</button>`).join("")+`<hr>${GUEST?"":`<button data-a="msh"><svg class="ic" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.600 10.500l6.800-4M8.600 13.500l6.800 4"/></svg>${t("shw")}</button>`}<button data-a="shw"><svg class="ic" viewBox="0 0 24 24"><circle cx="18" cy="5" r="3"/><circle cx="6" cy="12" r="3"/><circle cx="18" cy="19" r="3"/><path d="M8.600 10.500l6.800-4M8.600 13.500l6.800 4"/></svg>${GUEST?t("shw"):t("gshw")}</button>${GUEST&&!STANDALONE()?`<button data-a="ins"><svg class="ic" viewBox="0 0 24 24"><path d="M12 4v11M7.500 10.500L12 15l4.500-4.500M5 19h14"/></svg>${t("ins")}</button>`:""}<a href="https://www.jagatgururampalji.org" target="_blank" rel="noopener noreferrer"><svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18"/></svg><span>${t("web")}<small>jagatgururampalji.org</small></span><svg class="ic" viewBox="0 0 24 24" style="margin-inline-start:auto;width:18px;height:18px;color:var(--mu)"><path d="M7 17L17 7M9 7h8v8"/></svg></a>`;mark()}
@@ -2024,6 +2027,7 @@ $("bnb").innerHTML=NAV.map(n=>`<button data-p="${n[0]}"><svg class="ic" viewBox=
 dnav();theme();drs();states();pfill();home();phead();go(cur)}
 /* ===== guest (QR) install: installs the limited version only ===== */
 Object.assign(T.hi,{insT:"ऐप इंस्टॉल करें",insD:"फ़ोन की होम स्क्रीन पर ऐप जोड़ें",ins:"इंस्टॉल",insA:"ब्राउज़र के मेन्यू (⋮) में जाकर \"ऐप इंस्टॉल करें\" या \"होम स्क्रीन पर जोड़ें\" चुनें।",insI:"Safari में शेयर बटन दबाकर \"होम स्क्रीन पर जोड़ें\" चुनें।",insOk:"ठीक है",insDn:"ऐप इंस्टॉल हो गया"});
+Object.assign(T.hi,{wdl:"ऐप डाउनलोड करें",insHave:"ऐप पहले से इंस्टॉल है"});Object.assign(T.en,{wdl:"Download app",insHave:"App is already installed"});
 Object.assign(T.en,{insT:"Install the app",insD:"Add the app to your home screen",ins:"Install",insA:"Open the browser menu (⋮) and choose \"Install app\" or \"Add to Home screen\".",insI:"Tap the Share button in Safari, then choose \"Add to Home Screen\".",insOk:"OK",insDn:"App installed"});
 var DIP=null;function STANDALONE(){try{return matchMedia("(display-mode: standalone)").matches||navigator.standalone===true}catch(e){return false}}
 function insShow(){const b=$("ibn");if(!b)return;let d=false;try{d=sessionStorage.getItem("ibd")==="1"}catch(e){}b.hidden=!(GUEST&&!STANDALONE()&&!d)}
@@ -2358,6 +2362,7 @@ Object.assign(TX.en,{tSec:"Security",lockedFor:"Too many attempts. Try again in"
 Object.assign(TX.hi,{tSec:"सुरक्षा",lockedFor:"बहुत ज़्यादा गलत कोशिशें। दोबारा कोशिश करें:",left:"कोशिशें बाकी",wk:"यह पिन आसानी से अंदाज़ा लग सकता है। 1234, 0000, एक जैसे अंक या साल न रखें।",stW:"कमज़ोर पिन",stO:"ठीक पिन",stS:"मज़बूत पिन",forgot:"पिन भूल गए?",norec:"इस डिवाइस पर रिकवरी कोड नहीं बना था, इसलिए पिन रीसेट नहीं हो सकता। ऐप का साइट डेटा साफ़ करने पर एडमिन पैनल रीसेट होगा (चैनल बैकअप से वापस लाएँ)।",rst2:"पिन रीसेट करें",stepT:"पुष्टि करें कि आप ही हैं",stepD:"यह काम करने के लिए अपना पिन डालें।",cfm:"पुष्टि करें",cancel:"रद्द करें",aut:"निष्क्रिय रहने पर ऑटो-लॉक",bgl:"ऐप बैकग्राउंड में जाने पर लॉक करें",off:"बंद",min:"मिनट",scr:"सुरक्षा स्कोर",sess:"सेशन",logT:"सुरक्षा लॉग",logE:"अभी कोई घटना नहीं",clr:"लॉग साफ़ करें",sHash:"पिन सॉल्ट + PBKDF2 से सुरक्षित",sPin:"मज़बूत पिन (6+ अंक, अंदाज़े में न आए)",sAuto:"ऑटो-लॉक चालू (5 मिनट या कम)",sRec:"रिकवरी कोड बना है",e_in:"लॉग-इन हुआ",e_bad:"गलत पिन",e_lk:"गलत कोशिशों के बाद लॉक",e_auto:"ऑटो-लॉक (निष्क्रिय)",e_bg:"लॉक (ऐप बैकग्राउंड में)",e_man:"हाथ से लॉक किया",e_pin:"पिन बदला",e_rec:"रिकवरी कोड बना",e_rcv:"रिकवरी कोड से पिन रीसेट",e_up:"पिन सुरक्षा अपग्रेड हुई",e_rst:"एडमिन के बदलाव रीसेट",e_del:"चैनल हटाया",e_set:"पिन बना"});
 Object.assign(TX.en,{profT:"Admin profile",profD:"Used to reset your PIN with an OTP.",pfN:"Full name",pfP:"Mobile number",pfE:"Email address",pfS:"Save",pfOk:"Profile saved",pfBadN:"Enter your name",pfBadP:"Enter a valid mobile number",pfBadE:"Enter a valid email address",pfAdd:"Add admin profile",pfNone:"Add your name, number and email so a forgotten PIN can be reset with an OTP.",fgtD:"Get an OTP to reset your PIN.",viaP:"SMS to",viaE:"Email to",otpIn:"6-digit OTP",otpBad:"Wrong OTP",otpExp:"OTP expired. Request a new one.",otpRes:"Resend OTP",otpWait:"Resend in",noApi:"OTP service is not connected yet.",sendFail:"Could not send OTP. Check your internet and try again.",otpSent:"OTP sent",norec:"No admin profile was added, so the PIN cannot be reset. Clearing this app's site data resets the admin panel.",sRec:"Admin profile added (PIN reset by OTP)",e_pf:"Admin profile updated",e_otp:"PIN reset with OTP"});
 Object.assign(TX.hi,{profT:"एडमिन प्रोफ़ाइल",profD:"भूला हुआ पिन OTP से रीसेट करने के लिए।",pfN:"पूरा नाम",pfP:"मोबाइल नंबर",pfE:"ईमेल",pfS:"सेव करें",pfOk:"प्रोफ़ाइल सेव हो गई",pfBadN:"नाम भरें",pfBadP:"सही मोबाइल नंबर भरें",pfBadE:"सही ईमेल भरें",pfAdd:"एडमिन प्रोफ़ाइल जोड़ें",pfNone:"नाम, नंबर और ईमेल जोड़ें ताकि भूला पिन OTP से रीसेट हो सके।",fgtD:"पिन रीसेट करने के लिए OTP पाएँ।",viaP:"SMS भेजें:",viaE:"ईमेल भेजें:",otpIn:"6 अंकों का OTP",otpBad:"OTP गलत है",otpExp:"OTP की समय सीमा खत्म। नया मँगाएँ।",otpRes:"OTP दोबारा भेजें",otpWait:"दोबारा भेजें:",noApi:"OTP सेवा अभी जुड़ी नहीं है।",sendFail:"OTP नहीं भेजा जा सका। इंटरनेट जाँचकर दोबारा कोशिश करें।",otpSent:"OTP भेज दिया गया",norec:"एडमिन प्रोफ़ाइल नहीं जोड़ी गई थी, इसलिए पिन रीसेट नहीं हो सकता। ऐप का साइट डेटा साफ़ करने पर एडमिन पैनल रीसेट होगा।",sRec:"एडमिन प्रोफ़ाइल जुड़ी है (OTP से पिन रीसेट)",e_pf:"एडमिन प्रोफ़ाइल बदली",e_otp:"OTP से पिन रीसेट"});
+Object.assign(TX.en,{catNew:"+ New category…",catNP:"Type the new category name",needCat:"Enter the category name"});Object.assign(TX.hi,{catNew:"+ नई श्रेणी बनाएँ…",catNP:"नई श्रेणी का नाम लिखें",needCat:"श्रेणी का नाम लिखें"});
 const A=k=>{const d=TX[hi()?"hi":"en"];if(d&&typeof d[k]==="string")return d[k];const e=TX.en[k];return typeof e==="string"?e:k};
 const esc=x=>String(x).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
 const IC={x:'<svg class="ic" width="22" height="22" viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg>',bk:'<svg class="ic" width="22" height="22" viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg>',ch:'<svg class="ic" width="18" height="18" viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg>',lock:'<svg class="ic" width="26" height="26" viewBox="0 0 24 24"><rect x="5" y="11" width="14" height="9" rx="2"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></svg>',plus:'<svg class="ic" width="20" height="20" viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg>',user:'<svg class="ic" width="18" height="18" viewBox="0 0 24 24"><circle cx="12" cy="8" r="3.500"/><path d="M5 20a7 7 0 0 1 14 0"/></svg>',phone:'<svg class="ic" width="18" height="18" viewBox="0 0 24 24"><rect x="7" y="3" width="10" height="18" rx="2"/><path d="M11 18h2"/></svg>',mail:'<svg class="ic" width="18" height="18" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="M3.500 7l8.500 6 8.500-6"/></svg>',pen:'<svg class="ic" width="18" height="18" viewBox="0 0 24 24"><path d="M4 20h4L19 9a2.800 2.800 0 0 0-4-4L4 16z"/></svg>'};
@@ -2662,10 +2667,10 @@ function mainV(){
 function dbV(c){
  const a=all(),nI=a.filter(d=>d[3]==0).length,cs=new Set(a.map(d=>d[3])).size,ss=new Set(a.filter(d=>d[3]==0&&d[4]>=0).map(d=>d[4])).size,lg=a.filter(d=>LG[d[0]]).length,cc={};
  a.forEach(d=>{const k=(META[d[0]]||{}).cat||"other";cc[k]=(cc[k]||0)+1});
- const mx=Math.max(1,...CATS.map(x=>cc[x[0]]||0)),sc=(n,l)=>'<div><b>'+n+'</b><small>'+A(l)+'</small></div>';
+ const CL=CATS.concat(custCats().map(id=>CATX(id))),mx=Math.max(1,...CL.map(x=>cc[x[0]]||0)),sc=(n,l)=>'<div><b>'+n+'</b><small>'+A(l)+'</small></div>';
  c.innerHTML='<div class="astat">'+sc(a.length,"total")+sc(nI,"india")+sc(a.length-nI,"intl")+sc(ss,"states")+sc(cs,"countries")+sc(lg,"logos")+sc(HIDD.length,"hidden")+sc(ADM.add.length+Object.keys(ADM.edit).length,"changes")+sc(DELD.length,"fDel")+'</div>'
  +'<div class="grp">'
- +'<h3>'+A("bycat")+'</h3>'+CATS.map(x=>{const n=cc[x[0]]||0;return'<div class="acat"><span>'+esc(hi()?x[1]:x[2])+'</span><span class="abar"><i style="width:'+n/mx*100+'%"></i></span><b>'+n+'</b></div>'}).join("")
+ +'<h3>'+A("bycat")+'</h3>'+CL.map(x=>{const n=cc[x[0]]||0;return'<div class="acat"><span>'+esc(hi()?x[1]:x[2])+'</span><span class="abar"><i style="width:'+n/mx*100+'%"></i></span><b>'+n+'</b></div>'}).join("")
  +'</div>';
  
 }
@@ -2691,6 +2696,8 @@ function chV(c){
  document.getElementById("alist").onclick=e=>{if(e.target.closest("#amore")){lim+=80;list();return}const b=e.target.closest(".arow");if(!b||b.dataset.id==null)return;const id=+b.dataset.id;if(flt=="del"){const dd=DELD.find(x=>x[0]==id);ask(A("rest")+": "+(dd?dd[2]:""),A("rest"),()=>{ADM.del=ADM.del.filter(x=>x!=id);commit(true,A("resd"))})}else startEdit(id)};
  document.getElementById("aadd").onclick=()=>startEdit(null);
 }
+/* every custom category already used by any channel (+ one extra id) */
+function custCats(ex){const seen={},out=[];Object.keys(META).forEach(k=>{const c=(META[k]||{}).cat;if(c)seen[c]=1});if(ex)seen[ex]=1;Object.keys(seen).forEach(c=>{if(!CATS.some(x=>x[0]===c))out.push(c)});return out.sort((a,b)=>CATX(a)[1].localeCompare(CATX(b)[1]))}
 function startEdit(id){
  if(id==null)ed={id:null,en:"",hi:"",c:"",s:-1,sx:-1,logo:"",links:{},cat:"",ds:"",ci:"",pl:K.slice(),hid:false};
  else{const d=all().find(x=>x[0]==id),m=META[id]||{},links={};K.forEach(k=>{if(LINKS[id+k])links[k]=LINKS[id+k]});
@@ -2700,11 +2707,11 @@ function startEdit(id){
 function editV(){
  T_.textContent=A(ed.id==null?"eAdd":"eEdit");
  const cOpts='<option value="">'+A("cty")+'</option>'+C.map((c,i)=>'<option value="'+i+'">'+esc(hi()?c[1]:c[0])+'</option>').join(""),
- kOpts='<option value="">—</option>'+CATS.map(x=>'<option value="'+x[0]+'">'+esc(hi()?x[1]:x[2])+'</option>').join("");
+ kOpts='<option value="">—</option>'+CATS.map(x=>'<option value="'+x[0]+'">'+esc(hi()?x[1]:x[2])+'</option>').join("")+custCats(ed.cat).map(c=>'<option value="'+esc(c)+'">'+esc(CATX(c)[1])+'</option>').join("")+'<option value="__new">'+esc(A("catNew"))+'</option>';
  B.innerHTML='<div class="af2"><div class="grp"><h3>'+A("secB")+'</h3><label class="l">'+A("logo")+'</label><div class="alogo"><span id="elg"></span><div class="bt"><label class="btn g sm up">'+A("up")+'<input type="file" id="efl" accept="image/*"></label><button type="button" class="btn g sm" id="erm">'+A("rm")+'</button></div></div>'
  +'<label class="l" for="e_en">'+A("nEn")+'</label><input id="e_en" autocomplete="off" maxlength="80">'
  +'<label class="l" for="e_hi">'+A("nHi")+'</label><input id="e_hi" autocomplete="off" maxlength="80">'
- +'<label class="l">'+A("cat")+'</label><div class="aw"><select id="a_k">'+kOpts+'</select></div>'
+ +'<label class="l">'+A("cat")+'</label><div class="aw"><select id="a_k">'+kOpts+'</select></div><input id="a_kn" maxlength="40" autocomplete="off" hidden style="margin-top:8px" placeholder="'+esc(A("catNP"))+'">'
  +'<label class="l" for="e_ds">'+A("dsc")+'</label><textarea id="e_ds" rows="3" maxlength="300"></textarea>'
  +'</div><div class="grp"><h3>'+A("secL")+'</h3><div class="a2"><div><label class="l">'+A("cty")+'</label><div class="aw"><select id="a_c">'+cOpts+'</select></div></div>'
  +'<div id="esw"><label class="l">'+A("ste")+'</label><div class="aw"><select id="a_s"></select></div></div></div>'
@@ -2712,9 +2719,9 @@ function editV(){
  +'</div><div class="grp"><h3>'+A("secP")+'</h3><p class="sub" style="margin-top:0">'+A("platD")+'</p><div class="achips" id="apl">'+K.map(k=>'<button type="button" data-k="'+k+'">'+ico(k,16)+P[k][0]+'</button>').join("")+'</div>'
  +'<details class="alk"><summary>'+A("lnk")+'</summary><p class="sub" style="margin-top:0">'+A("lnkD")+'</p><input id="e_qp" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="'+esc(A("qpP"))+'" style="margin-bottom:10px">'+K.map(k=>'<div class="alnk"><i style="background:'+PC[k]+'">'+ico(k,16)+'</i><input data-k="'+k+'" inputmode="url" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="'+esc(P[k][0]+" · link / @id")+'"></div>').join("")+'</details>'
  +'</div><div class="grp"><div class="asw"><span>'+A("vis")+'</span><button type="button" class="atg" id="ehd" role="switch"></button></div>'
- +'</div><div class="afoot"><button type="button" class="btn" id="esv">'+A("save")+'</button>'+(ed.id!=null?'<button type="button" class="btn dg" id="edl">'+A("del")+'</button>':'')+'</div></div>';
+ +'</div><div class="afoot"><button type="button" class="btn" id="esv">'+A("save")+'</button>'+(ed.id!=null?'<button type="button" class="btn dg" id="edl">'+(window.FB&&(FB.isOwner||FB.isMgr)?A("del"):A("rqT"))+'</button>':'')+'</div></div>';
  const g=id=>document.getElementById(id);
- g("e_en").value=ed.en;g("e_hi").value=ed.hi;g("a_c").value=ed.c;g("a_k").value=ed.cat;g("e_ds").value=ed.ds;g("e_ci").value=ed.ci;
+ g("e_en").value=ed.en;g("e_hi").value=ed.hi;g("a_c").value=ed.c;g("a_k").value=ed.cat;g("a_k").addEventListener("change",()=>{const n=g("a_k").value==="__new";g("a_kn").hidden=!n;if(n)setTimeout(()=>g("a_kn").focus(),60)});g("e_ds").value=ed.ds;g("e_ci").value=ed.ci;
  const fillS=()=>{const cv=g("a_c").value,isIn=cv==="0",L=(!isIn&&cv!=="")?PRS[cv]:null,has=isIn||!!(L&&L.length);g("esw").hidden=!has;g("esw").parentNode.classList.toggle("one",!has);g("a_s").innerHTML='<option value="-1">'+A(isIn?"allIn":"allS")+'</option>'+(isIn?S.map((s2,i)=>'<option value="'+i+'">'+esc(hi()?s2[1]:s2[0])+'</option>').join(""):(L||[]).map((x,i)=>{const a=String(x).split("|");return'<option value="'+i+'">'+esc(hi()&&a[1]?a[1]:a[0])+'</option>'}).join(""));g("a_s").value=String(isIn?ed.s:ed.sx)};
  fillS();
  const logo=()=>{g("elg").innerHTML=av(0,"").replace(/<span class="aav">.*<\/span>/,'<span class="aav">'+(ed.logo?'<img src="'+ed.logo+'" alt="">':esc([...(g("e_en").value||"?")][0]||"?"))+'</span>');g("erm").hidden=!ed.logo};
@@ -2735,7 +2742,7 @@ function editV(){
  g("esv").onclick=saveEd;
  if(g("edl"))g("edl").onclick=()=>!(window.FB&&(FB.isOwner||FB.isMgr))?reqDel(ed):stepUp(()=>ask(A("delQ"),A("delY"),()=>{log("del");const id=ed.id;const i=ADM.add.findIndex(a=>a.id==id);if(i>=0)ADM.add.splice(i,1);else{if(!ADM.del.includes(id))ADM.del.push(id);delete ADM.edit[id]}commit(true,A("dld"))}));
 }
-const xf=r=>({sx:(r.sx!=null&&+r.sx>=0)?+r.sx:-1,cat:typeof r.cat==="string"?r.cat:"",ds:typeof r.ds==="string"?r.ds.slice(0,300):"",ci:typeof r.ci==="string"?r.ci.slice(0,60):"",pl:Array.isArray(r.pl)?r.pl.filter(k=>K.includes(k)):null,hid:!!r.hid});
+const xf=r=>({sx:(r.sx!=null&&+r.sx>=0)?+r.sx:-1,cat:typeof r.cat==="string"?r.cat.slice(0,45):"",ds:typeof r.ds==="string"?r.ds.slice(0,300):"",ci:typeof r.ci==="string"?r.ci.slice(0,60):"",pl:Array.isArray(r.pl)?r.pl.filter(k=>K.includes(k)):null,hid:!!r.hid});
 const toLogo=f=>new Promise((res,rej)=>{const fin=(im,w,h)=>{try{const z=160,c=document.createElement("canvas");c.width=c.height=z;const x=c.getContext("2d"),m=Math.min(w,h);x.fillStyle="#fff";x.fillRect(0,0,z,z);if(m>0)x.drawImage(im,(w-m)/2,(h-m)/2,m,m,0,0,z,z);else x.drawImage(im,0,0,z,z);let d=c.toDataURL("image/webp",.85);if(d.indexOf("data:image/webp")!==0)d=c.toDataURL("image/jpeg",.85);res(d)}catch(e){rej(e)}};
  const img=new Image(),u=URL.createObjectURL(f);img.onload=()=>{URL.revokeObjectURL(u);fin(img,img.naturalWidth||img.width,img.naturalHeight||img.height)};
  img.onerror=()=>{URL.revokeObjectURL(u);window.createImageBitmap?createImageBitmap(f).then(bm=>fin(bm,bm.width,bm.height),rej):rej()};img.src=u});
@@ -2744,14 +2751,17 @@ function saveEd(){if(busy)return;
  const en=g("e_en").value.trim().replace(/\s+/g," "),hn=g("e_hi").value.trim().replace(/\s+/g," "),c=g("a_c").value;
  if(!en){toast(A("needN"));g("e_en").focus();return}
  if(c===""){toast(A("needC"));return}
- {const key=x=>nz(String(x||"")).replace(/[^a-z0-9\u0900-\u097F]+/g,""),ck=g("a_k").value||"",ns=[key(en),key(hn)].filter(Boolean);
+ let catV=g("a_k").value||"";
+ if(catV==="__new"){const nn=g("a_kn").value.trim().replace(/\s+/g," ").slice(0,40);if(!nn){toast(A("needCat"));g("a_kn").focus();return}
+  const lc=nn.toLowerCase(),b=CATS.find(x=>x[1].toLowerCase()===lc||x[2].toLowerCase()===lc),ex=custCats().find(id=>CATX(id)[1].toLowerCase()===lc);catV=b?b[0]:(ex||"u:"+nn)}
+ {const key=x=>nz(String(x||"")).replace(/[^a-z0-9\u0900-\u097F]+/g,""),ck=catV,ns=[key(en),key(hn)].filter(Boolean);
   const dp=all().find(d=>d[0]!=ed.id&&((META[d[0]]||{}).cat||"")===ck&&[key(d[2]),key(d[1])].filter(Boolean).some(k=>ns.includes(k)));
-  if(dp){const cl=CATS.find(x=>x[0]===ck),cnm=cl?(hi()?cl[1]:cl[2]):"—";toast(A("dupN")+" ("+(hi()&&dp[1]?dp[1]:dp[2])+" · "+cnm+")");g("e_en").classList.add("bad");g("e_en").focus();setTimeout(()=>g("e_en").classList.remove("bad"),2500);return}}
+  if(dp){const cl=CATX(ck),cnm=cl?(hi()?cl[1]:cl[2]):"—";toast(A("dupN")+" ("+(hi()&&dp[1]?dp[1]:dp[2])+" · "+cnm+")");g("e_en").classList.add("bad");g("e_en").focus();setTimeout(()=>g("e_en").classList.remove("bad"),2500);return}}
  const links={};let bad=false;[...B.querySelectorAll("input[data-k]")].forEach(i=>{const v=i.value.trim();if(!v)return;const r=NL(i.dataset.k,v);if(!r){bad=true;i.focus();return}links[r.k]=r.url;if(!ed.pl.includes(r.k))ed.pl=ed.pl.concat(r.k)});
  if(bad){toast(A("badU"));return}
  const cn_=+c,sn_=cn_===0?+g("a_s").value:0,sx_=cn_!==0&&!g("esw").hidden?+g("a_s").value:-1;
  if(!ed.pl.length){toast(A("needP"));return}
- const rec={en,hi:hn||en,c:cn_,s:sn_,sx:sx_,logo:ed.logo||"",links,cat:g("a_k").value,ds:g("e_ds").value.trim(),ci:g("e_ci").value.trim(),pl:ed.pl.length==K.length?null:ed.pl.slice(),hid:ed.hid};
+ const rec={en,hi:hn||en,c:cn_,s:sn_,sx:sx_,logo:ed.logo||"",links,cat:catV,ds:g("e_ds").value.trim(),ci:g("e_ci").value.trim(),pl:ed.pl.length==K.length?null:ed.pl.slice(),hid:ed.hid};
  if(ed.id!=null&&ed.logo&&ed.logo===ed.logo0&&!ADM.add.some(a=>a.id==ed.id)){const pv=ADM.edit[ed.id];if(pv&&typeof pv.logo==="string"&&pv.logo)rec.logo=pv.logo;else delete rec.logo}
  if(ed.id==null){const mx=Math.max(1000,...all().map(d=>d[0]),...DELD.map(d=>d[0]),...ADM.add.map(a=>a.id));ADM.add.push(Object.assign({id:mx+1},rec))}
  else{const i=ADM.add.findIndex(a=>a.id==ed.id);if(i>=0)ADM.add[i]=Object.assign({id:ed.id},rec);else ADM.edit[ed.id]=rec}tab="ch";flt="chg";q="";
@@ -2882,7 +2892,12 @@ FB.afterLink=async()=>{const u=auth.currentUser;if(!u)return;await u.reload();FB
  try{await db.collection("admins").doc(u.uid).set({phone:u.phoneNumber||"",email:u.email||""},{merge:true})}catch(e){}
  await readAdmin(u)};
 /* ---------- admin ---------- */
-async function readAdmin(u){try{const s=await db.collection("admins").doc(u.uid).get();FB.isAdmin=s.exists;FB.adm=s.exists?s.data():null}catch(e){FB.isAdmin=false;FB.adm=null}
+/* a person invited by the owner (Manager / Admin) gets that role automatically at login */
+async function selfGrant(u){try{const ks=[];if(u.email)ks.push("e:"+String(u.email).toLowerCase());if(u.phoneNumber)ks.push("p:"+u.phoneNumber);let role="";
+for(const k of ks){const d=await db.collection("adminAllow").doc(k).get();if(d.exists){const r=(d.data()||{}).role;if(r==="main")role="main";else if(r==="manager"&&role!=="main")role="manager"}}
+if(!role)return false;const ar=firebase.firestore.FieldValue.arrayUnion(u.uid);await db.collection("config").doc("owner").set(role==="main"?{uids:ar}:{mgrs:ar},{merge:true});return true}catch(e){return false}}
+async function readAdmin(u){await readAdmin0(u);if(FB.isAdmin&&FB.owner&&!FB.isOwner&&!FB.isMgr){if(await selfGrant(u))await readAdmin0(u)}}
+async function readAdmin0(u){try{const s=await db.collection("admins").doc(u.uid).get();FB.isAdmin=s.exists;FB.adm=s.exists?s.data():null}catch(e){FB.isAdmin=false;FB.adm=null}
  FB.isOwner=false;FB.isMgr=false;FB.owner=null;
  if(FB.isAdmin){try{const o=await db.collection("config").doc("owner").get();
   if(o.exists){FB.owner=o.data();FB.isOwner=FB.owner.uid===u.uid||(FB.owner.uids||[]).includes(u.uid);FB.isMgr=!FB.isOwner&&(FB.owner.mgrs||[]).includes(u.uid)}
@@ -2952,6 +2967,8 @@ async function cfgPull(){
   ls("fbver",ver);
   if(norm({add:ADM.add,edit:ADM.edit,del:ADM.del,app:ADM.app})!==norm(rem)){localStorage.setItem("adm1",JSON.stringify(rem));location.reload()}
  }catch(e){}}
+/* re-check admin changes whenever the app comes back to the foreground (at most once a minute) */
+let _cpT=Date.now();document.addEventListener("visibilitychange",()=>{if(document.hidden||Date.now()-_cpT<60000)return;_cpT=Date.now();if(document.documentElement.classList.contains("adm")||(window.FB&&FB.isAdmin)||ls("fbad")==="1")return;cfgPull()});
 async function afterAuth(){
  if(ls("fbad")==="1"){if(FB.isAdmin)await onAdmin();else ls("fbad",null)}
  if(ls("fbad")!=="1")await cfgPull()}
