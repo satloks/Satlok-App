@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="hi"><head><meta charset="utf-8">
+<html lang="hi" translate="no"><head><meta charset="utf-8"><meta name="google" content="notranslate"><meta http-equiv="Content-Language" content="hi">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>सतलोक सोशियल ऐप</title>
 <link rel="icon" type="image/png" href="icon-192.png">
@@ -708,6 +708,7 @@ nav#bn{background:var(--card)!important;border:0!important;box-shadow:0 -1px 0 v
 .sheet::before,.pkc::before{content:"";display:block;width:36px;height:4px;border-radius:4px;background:var(--bd);margin:8px auto 0}
 .ov,#pk{background:rgba(20,15,8,.45)}
 #adm .ah{background:var(--card);border-bottom:1px solid var(--bd)}
+#adm .ah b#adt{display:flex;align-items:center;gap:8px;min-width:0;white-space:nowrap}#adm .ah b#adt .ptt{overflow:hidden;text-overflow:ellipsis}#adm .ah b#adt .rbg{flex:none;font-size:11px;padding:2px 9px}#adm .rbg.manager{background:rgba(13,122,95,.1)}#adm .rbg.main{background:rgba(196,64,12,.08)}
 input:focus,select:focus,textarea:focus{border-color:var(--ac)!important;box-shadow:0 0 0 3px color-mix(in srgb,var(--ac) 18%,transparent)!important}
 #ts{background:var(--tx);color:var(--bg)}
 /* touch feel */
@@ -2435,7 +2436,8 @@ const strength=p=>weak(p)?0:p.length>=6?2:1;
 const hasPin=()=>!!(SEC.h||ADM.pin);
 async function hp(pin,salt,mode){if(mode!=="h$"){try{const e=new TextEncoder(),k=await crypto.subtle.importKey("raw",e.encode(pin),"PBKDF2",false,["deriveBits"]);return"p2$"+hx(await crypto.subtle.deriveBits({name:"PBKDF2",hash:"SHA-256",salt:e.encode(salt),iterations:120000},k,256))}catch(e){}}return"h$"+h53(salt+":"+pin,11)+h53(pin+":"+salt,13)}
 const md=h=>h.slice(0,2)==="h$"?"h$":"p2";
-async function setPin(v){SEC.salt=rnd(16);SEC.h=await hp(v,SEC.salt);sv()}
+function pushPin(){const F=window.FB;if(F&&F.user&&F.isAdmin&&F.savePin&&SEC.h)F.savePin(SEC.h,SEC.salt).then(()=>{SEC.pc=0;sv()},()=>{})}
+async function setPin(v){SEC.salt=rnd(16);SEC.h=await hp(v,SEC.salt);SEC.pc=1;sv();pushPin()}
 const lockLeft=()=>Math.max(0,SEC.at.until-Date.now());
 function res(ok){if(ok){SEC.at.n=0;SEC.at.until=0;sv();return 1}SEC.at.n++;const s=LV[Math.min(SEC.at.n,LV.length-1)];SEC.at.ts=Date.now();log("bad");if(s){SEC.at.until=Date.now()+s*1000;log("lk",fmt(s))}sv();return 0}
 async function vfy(v){if(lockLeft()>0)return -1;let ok=false;
@@ -2476,11 +2478,15 @@ const place_=(c,s)=>c==0?(s>=0?(hi()?S[s][1]:S[s][0]):(hi()?C[0][1]:C[0][0])):(h
 const lgc={};const lgs=id=>{const u=LG[id];if(!u)return"";if(u.indexOf("data:")!==0)return esc(u);if(lgc[id]&&lgc[id].k===u)return lgc[id].v;try{const i=u.indexOf(","),mime=u.slice(5,u.indexOf(";")),b=atob(u.slice(i+1)),a=new Uint8Array(b.length);for(let j=0;j<b.length;j++)a[j]=b.charCodeAt(j);const v=URL.createObjectURL(new Blob([a],{type:mime}));lgc[id]={k:u,v};return v}catch(e){return esc(u)}};
 const av=(id,name)=>'<span class="aav">'+(LG[id]?'<img src="'+lgs(id)+'" alt="" decoding="async">':esc([...String(name||"?")][0]||"?"))+'</span>';
 
+function panelKey(){const F=window.FB||{};return F.isPrim?"owner":F.isOwner?"main":F.isMgr?"manager":"admin"}
+function panelTitle(){const k=panelKey(),m={owner:["pnOwner","oPrimary"],main:["pnAdmin","isMain"],manager:["pnMgr","oRMgr"],admin:["pnAdmin","oRAdm"]}[k];T_.innerHTML='<span class="ptt">'+esc(A(m[0]))+'</span><span class="rbg '+k+'">'+esc(A(m[1]))+'</span>'}
+Object.assign(TX.en,{pnOwner:"Owner panel",pnAdmin:"Admin panel",pnMgr:"Manager panel",prOwner:"Owner profile",prAdmin:"Admin profile",prMgr:"Manager profile"});
+Object.assign(TX.hi,{pnOwner:"ओनर पैनल",pnAdmin:"एडमिन पैनल",pnMgr:"मैनेजर पैनल",prOwner:"ओनर प्रोफ़ाइल",prAdmin:"एडमिन प्रोफ़ाइल",prMgr:"मैनेजर प्रोफ़ाइल"});
 function render(){clearInterval(tmr);if(["main","edit","pro"].includes(view)&&!(window.FB&&FB.user&&FB.isAdmin))view="lock";
  const bk=view==="edit"||view==="fgt"||view==="pro";X.innerHTML=bk?IC.bk:IC.x;X.setAttribute("aria-label",bk?A("back"):A("close"));
  ADL.hidden=["lock","fgt","npin"].includes(view);
  if(view==="lock")return lockV();if(view==="npin")return newPinV();if(view==="fgt")return fgtV();if(view==="pro")return proV();if(view==="edit")return editV();
- T_.textContent=A("adm");mainV();
+ panelTitle();mainV();
 }
 /* ===== Firebase admin sign-in (Google / Phone OTP) ===== */
 Object.assign(TX.en,{authT:"Admin sign-in",gG:"Continue with Google",pNum:"Mobile number",sOtp:"Send OTP",vOtp:"Verify",otpPh:"6-digit OTP",notAdm:"Not an admin account",notAdmD:"Ask an admin to add this Gmail or phone number, then try again.",retry:"Try again",soT:"Sign out",soQ:"Sign out of this account?",fbOff:"Cloud is not available. Check your internet and reopen the app.",fbUrl:"Open the app from this link in Chrome to sign in",fbOp:"Open app",wait:"Please wait…",acc:"Sign-in methods",lnkG:"Link Gmail",admsT:"Admins",addA:"Add admin",addAp:"Gmail or mobile number",addAok:"Admin added",rmA:"Remove",authE:"Sign-in failed",otpE:"Could not send OTP",badNum:"Enter a valid mobile number",badId:"Enter a valid Gmail or mobile number",linkOk:"Linked",cloudE:"Could not save to cloud. Saved on this phone only.",tSec:"Account"});
@@ -2503,7 +2509,14 @@ function otpWire(id,send,verify,done){const g=x=>gg(id+x);let sent=false;
   }catch(e){g("e").textContent=(sent?A("otpBad"):A("otpE"))+(e&&(e.code||e.message)?" ("+String(e.code||e.message).slice(0,120)+")":"");try{console.error("OTP",e)}catch(_){}if(!sent&&window.FB&&FB.resetRv)FB.resetRv()}
   b.disabled=false}}
 function authBox(h,p,x){B.innerHTML='<div class="apin"><div class="lk">'+IC.lock+'</div>'+(h?'<h2>'+h+'</h2>':'')+(p?'<p>'+p+'</p>':'')+(x||'')+'</div>'}
-function admIn(){if(resetMode||!hasPin()){view="npin";render();return}openSess();view="main";render()}
+function admIn(){const F=window.FB;
+ if(!resetMode&&F&&F.user&&F.isAdmin){const a=F.adm||{};
+  if(SEC.pc){pushPin()}
+  else if(a.pinH&&a.pinS){if(SEC.h!==a.pinH||SEC.salt!==a.pinS){SEC.h=a.pinH;SEC.salt=a.pinS;SEC.at.n=0;SEC.at.until=0;sv();pinOk=false}}
+  else if(SEC.h&&pinOk){pushPin()}}
+ if(resetMode||!hasPin()){view="npin";render();return}
+ if(!pinOk){view="lock";render();return}
+ openSess();view="main";render()}
 function lockV(){
  T_.textContent=A("authT");const F=window.FB;
  if(hasPin()&&!pinOk&&!resetMode)return pinV();
@@ -2597,7 +2610,7 @@ function secV(c){
  const F=window.FB||{},u=F.user||{},pf=pfNow(),prov=(u.providerData||[]).map(p=>p.providerId),
  row=(ic,v)=>'<div class="prow">'+IC[ic]+'<span>'+esc(v||"-")+'</span></div>';
  const rbd=()=>{const k=F.isPrim?["owner","oPrimary"]:F.isOwner?["main","isMain"]:F.isMgr?["manager","oRMgr"]:null;return k?' <span class="rbg '+k[0]+'">'+A(k[1])+'</span>':''};
- c.innerHTML='<div class="grp"><div class="ghead"><h3>'+A("profT")+rbd()+'</h3><button type="button" class="ib" id="spe" aria-label="'+A("pfS")+'">'+IC.pen+'</button></div>'+row("user",pf.n)+row("phone",pf.p?showP(pf.p):"")+row("mail",pf.e)+'</div>'
+ c.innerHTML='<div class="grp"><div class="ghead"><h3>'+A({owner:"prOwner",main:"prAdmin",manager:"prMgr",admin:"prAdmin"}[panelKey()])+rbd()+'</h3><button type="button" class="ib" id="spe" aria-label="'+A("pfS")+'">'+IC.pen+'</button></div>'+row("user",pf.n)+row("phone",pf.p?showP(pf.p):"")+row("mail",pf.e)+'</div>'
  +'<div class="grp"><h3>'+A("acc")+'</h3><div class="prow">'+gic()+'<span>'+esc(prov.includes("google.com")?(u.email||"-"):"-")+'</span></div><div class="prow">'+IC.phone+'<span>'+esc(u.phoneNumber||"-")+'</span></div>'
  +(prov.includes("google.com")?'':'<button type="button" class="btn g" id="slg">'+gic()+A("lnkG")+'</button>')
  +(prov.includes("phone")?'':'<div id="slp" style="margin-top:10px">'+otpHtml("lp")+'</div>')
@@ -2711,12 +2724,13 @@ function ownR(c){const d=OWN,no='<p class="pnt" style="margin:8px 6px">'+A("ownN
   if(!k){gg("aae").textContent=A("badId");return}
   gg("aae").textContent="";FB.allowAdd(k,ownNR).then(()=>{toast(A("addAok"));rl()}).catch(()=>{gg("aae").textContent=A("cloudE")})}}
 const all=()=>D.concat(HIDD);
+function bTabs(){const b=[["db","tDb"],["ch","tCh"],["sec","tSec"]];if(window.FB&&FB.isPrim)b.push(["sc","tSc"]);return b}
 function xTabs(){const F=window.FB||{};return F.isPrim?[["own","tOwn"]]:F.isOwner?[["own","tMgrs"]]:F.isMgr?[]:[["req","tReq"]]}
 function mainV(){
- B.innerHTML='<div class="seg" id="atb">'+[["db","tDb"],["ch","tCh"],["sec","tSec"],["sc","tSc"]].concat(xTabs()).map(x=>'<button type="button" data-tb="'+x[0]+'">'+A(x[1])+(x[0]==="own"&&RQC.n?' ('+RQC.n+')':'')+'</button>').join("")+'</div><div id="atc"></div>';
+ B.innerHTML='<div class="seg" id="atb">'+bTabs().concat(xTabs()).map(x=>'<button type="button" data-tb="'+x[0]+'">'+A(x[1])+(x[0]==="own"&&RQC.n?' ('+RQC.n+')':'')+'</button>').join("")+'</div><div id="atc"></div>';
  if(window.FB&&FB.isOwner&&Date.now()-RQC.t>30000){RQC.t=Date.now();FB.reqCount().then(n=>{if(n!==RQC.n){RQC.n=n;const b=B.querySelector('#atb button[data-tb="own"]');if(b)b.textContent=A(FB.isPrim?"tOwn":"tMgrs")+(n?" ("+n+")":"")}}).catch(()=>{})}
  [...B.querySelectorAll("#atb button")].forEach(b=>{b.classList.toggle("on",b.dataset.tb===tab);b.onclick=()=>{tab=b.dataset.tb;mainV();B.scrollTop=0}});
- if(!["db","ch","sec","sc"].concat(xTabs().map(x=>x[0])).includes(tab))tab="db";({db:dbV,ch:chV,sec:secV,sc:scV,own:ownV,req:reqV})[tab](document.getElementById("atc"));
+ if(!bTabs().concat(xTabs()).map(x=>x[0]).includes(tab))tab="db";({db:dbV,ch:chV,sec:secV,sc:scV,own:ownV,req:reqV})[tab](document.getElementById("atc"));
 }
 function dbV(c){
  const a=all(),nI=a.filter(d=>d[3]==0).length,cs=new Set(a.map(d=>d[3])).size,ss=new Set(a.filter(d=>d[3]==0&&d[4]>=0).map(d=>d[4])).size,lg=a.filter(d=>LG[d[0]]).length,cc={};
@@ -2829,11 +2843,12 @@ function admImport(o){try{if(!o||typeof o!=="object"||(o.kind!=="satlok-admin"&&
   ADM.del=o.del.map(Number).filter(Number.isFinite);const ap0=o.app&&typeof o.app==="object"?o.app:{};ADM.app={};["th","te","sh","se"].forEach(k=>{if(typeof ap0[k]==="string")ADM.app[k]=ap0[k].slice(0,60)});localStorage.setItem("adm1",JSON.stringify(ADM));localStorage.setItem("fbad","1");return true}catch(e){return false}}
 window.admImport=admImport;
 function scV(c){
+ if(!(window.FB&&FB.isPrim)){c.innerHTML="";return}
  const ap=ADM.app||{},fi=(id,k,l,ph)=>'<label class="l" for="'+id+'">'+A(l)+'</label><input id="'+id+'" maxlength="60" autocomplete="off" placeholder="'+esc(ph)+'" value="'+esc(ap[k]||"")+'">';
  c.innerHTML='<div class="grp"><h3>'+A("appI")+'</h3>'+fi("x_th","th","ttlH",T.hi.ttl)+fi("x_te","te","ttlE",T.en.ttl)+fi("x_sh","sh","subH",T.hi.sub)+fi("x_se","se","subE",T.en.sub)+'<button type="button" class="btn" id="xsv" style="margin-top:12px">'+A("appS")+'</button></div>'+(window.FB&&FB.isPrim?'<div class="grp"><button type="button" class="btn dg" id="brs">'+A("rst")+'</button></div>':'');
  const g=id=>document.getElementById(id);
  if(g("brs"))g("brs").onclick=()=>!(window.FB&&FB.isPrim)?toast(A("ownOnlyP")):stepUp(()=>ask(A("rstQ"),A("rstY"),()=>{log("rst");ADM.add=[];ADM.edit={};ADM.del=[];ADM.app={};commit(true,A("rstD"))}));
- document.getElementById("xsv").onclick=()=>{const v=id=>document.getElementById(id).value.trim();ADM.app={th:v("x_th"),te:v("x_te"),sh:v("x_sh"),se:v("x_se")};commit(true,A("svd"))};
+ document.getElementById("xsv").onclick=()=>{if(!(window.FB&&FB.isPrim)){toast(A("ownOnlyP"));return}const v=id=>document.getElementById(id).value.trim();ADM.app={th:v("x_th"),te:v("x_te"),sh:v("x_sh"),se:v("x_se")};commit(true,A("svd"))};
 }
 /* hidden entry: tap the version line in Settings 5 times */
 window.admLabel=function(){};
@@ -2909,7 +2924,7 @@ async function pullUser(u){let s;
  ls("fbuid",u.uid);FB.synced=true}
 let tmr=0;
 FB.touch=()=>{if(FB.applying)return;ls("fbts",String(Date.now()));ls("fbd","1");if(!FB.user||!FB.synced)return;clearTimeout(tmr);tmr=setTimeout(()=>{pushUser(FB.user).catch(()=>{})},1500)};
-FB.afterSave=()=>{if(!FB.ready||!FB.authDone||FB.user||FB.nag)return;FB.nag=1;FB.google().catch(x=>{if(x&&/popup-closed|cancelled/.test(x.code||""))return;toast(errT(x))})};
+FB.afterSave=()=>{};
 FB.signOut=async()=>{clearTimeout(tmr);if(FB.user&&FB.synced&&ls("fbd")==="1"){try{await pushUser(FB.user)}catch(e){}}FB.synced=false;await auth.signOut()};
 FB.logout=async()=>{try{await FB.signOut()}catch(e){}FB.user=null;FB.isAdmin=false;FB.isOwner=false;FB.isMgr=false;FB.isPrim=false;FB.adm=null;FB.userKnown=true;FB.syncing=false;FB.applying=true;try{PR={};st={};save();psave();ls("fbuid",null);ls("fbts","0");ls("fbd",null);refreshUI()}catch(e){}FB.applying=false;card();ev()};
 /* ---------- sign-in methods ---------- */
@@ -2934,7 +2949,11 @@ const cancel=()=>{if(fin)return;fin=true;closeSheet();rej({code:"auth/popup-clos
 google.accounts.id.initialize({client_id:GCID,callback:ok,auto_select:false,cancel_on_tap_outside:false,itp_support:true,use_fedcm_for_prompt:true,use_fedcm_for_button:true});
 google.accounts.id.prompt(n=>{if(fin)return;try{if(n.isDismissedMoment&&n.isDismissedMoment()){if(n.getDismissedReason&&n.getDismissedReason()!=="credential_returned")cancel()}
 else if((n.isNotDisplayed&&n.isNotDisplayed())||(n.isSkippedMoment&&n.isSkippedMoment())){closeSheet=gsiSheet(ok,cancel)}}catch(e){closeSheet=gsiSheet(ok,cancel)}})}));
-FB.google=()=>{if(!/^[0-9]+-[\w-]+\.apps\.googleusercontent\.com$/.test(GCID))return viaPopup();return viaGsi().catch(e=>{if(e&&/popup-closed|cancelled/.test(e.code||""))throw e;return viaPopup()})};
+/* one-screen Google sign-in: a single full account-chooser window, no extra sheets (Google token flow -> Firebase) */
+const viaToken=()=>new Promise((res,rej)=>{try{const tc=google.oauth2.initTokenClient({client_id:GCID,scope:"openid email profile",prompt:"select_account",callback:r=>{if(!r||r.error||!r.access_token)rej({code:"auth/popup-closed-by-user"});else res(r.access_token)},error_callback:e=>{rej({code:e&&e.type==="popup_closed"?"auth/popup-closed-by-user":"auth/popup-blocked"})}});tc.requestAccessToken()}catch(x){rej({code:"auth/popup-blocked"})}});
+const tokOK=()=>/^[0-9]+-[\w-]+\.apps\.googleusercontent\.com$/.test(GCID)&&window.google&&google.oauth2;
+FB.google=()=>{if(!tokOK())return viaPopup();return viaToken().then(t=>auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(null,t)),e=>{if(e&&/popup-closed|cancelled/.test(e.code||""))throw e;return viaPopup()})};
+loadGsi().catch(()=>{});
 let rv=null,conf=null;
 const mkRv=()=>{if(rv)return rv;let h=document.getElementById("rcp");if(!h){h=document.createElement("div");h.id="rcp";document.body.appendChild(h)}rv=new firebase.auth.RecaptchaVerifier(h,{size:"invisible"});return rv};
 FB.resetRv=()=>{try{rv&&rv.clear()}catch(e){}rv=null;const h=document.getElementById("rcp");if(h)h.innerHTML=""};
@@ -2943,12 +2962,7 @@ FB.phoneVerify=c=>conf.confirm(c);
 FB.linkPhoneSend=async n=>{conf=await auth.currentUser.linkWithPhoneNumber(n,mkRv())};
 FB.linkPhoneVerify=c=>conf.confirm(c);
 const gcOK=()=>/^[0-9]+-[\w-]+\.apps\.googleusercontent\.com$/.test(GCID);
-FB.linkGoogle=()=>{if(!gcOK())return auth.currentUser.linkWithPopup(gp());
- return loadGsi().then(()=>new Promise((res,rej)=>{let fin=false,closeSheet=()=>{};
-  const ok=r=>{if(fin)return;fin=true;closeSheet();auth.currentUser.linkWithCredential(firebase.auth.GoogleAuthProvider.credential(r.credential)).then(res,rej)};
-  const cancel=()=>{if(fin)return;fin=true;closeSheet();rej({code:"auth/popup-closed-by-user"})};
-  google.accounts.id.initialize({client_id:GCID,callback:ok,auto_select:false,cancel_on_tap_outside:false,itp_support:true,use_fedcm_for_prompt:true,use_fedcm_for_button:true});
-  closeSheet=gsiSheet(ok,cancel)})).catch(e=>{if(e&&/popup-closed|cancelled|credential-already|already-in-use/.test(e.code||""))throw e;return auth.currentUser.linkWithPopup(gp())})};
+FB.linkGoogle=()=>{if(!tokOK())return auth.currentUser.linkWithPopup(gp());return viaToken().then(t=>auth.currentUser.linkWithCredential(firebase.auth.GoogleAuthProvider.credential(null,t)),e=>{if(e&&/popup-closed|cancelled|credential-already|already-in-use/.test(e.code||""))throw e;return auth.currentUser.linkWithPopup(gp())})};
 FB.afterLink=async()=>{const u=auth.currentUser;if(!u)return;await u.reload();FB.user=auth.currentUser;
  try{await db.collection("admins").doc(u.uid).set({phone:u.phoneNumber||"",email:u.email||""},{merge:true})}catch(e){}
  await readAdmin(u)};
@@ -2967,6 +2981,7 @@ let claiming=null;
 FB.claim=()=>{const u=FB.user;if(!u)return Promise.resolve(false);if(FB.isAdmin)return Promise.resolve(true);if(claiming)return claiming;
  claiming=(async()=>{try{await db.collection("admins").doc(u.uid).set({name:u.displayName||"",email:u.email||"",phone:u.phoneNumber||"",createdAt:firebase.firestore.FieldValue.serverTimestamp()});await readAdmin(u)}catch(e){FB.isAdmin=false}
   if(FB.isAdmin){FB.claimFailed="";await onAdmin()}else FB.claimFailed=u.uid;claiming=null;return FB.isAdmin})();return claiming};
+FB.savePin=(h,sl)=>{const u=FB.user;if(!u||!FB.isAdmin)return Promise.reject(new Error("no"));return db.collection("admins").doc(u.uid).set({pinH:h,pinS:sl},{merge:true}).then(()=>{FB.adm=Object.assign({},FB.adm||{},{pinH:h,pinS:sl})})};
 FB.saveAdminProfile=p=>{if(!FB.user||!FB.isAdmin)return;const d=String(p.p||"").replace(/\D/g,"");
  return db.collection("admins").doc(FB.user.uid).set({name:p.n||"",email:p.e||"",phone:d?"+"+(d.length===10?"91":"")+d:""},{merge:true}).then(()=>readAdmin(FB.user)).catch(()=>{})};
 FB.allowList=async()=>{const s=await db.collection("adminAllow").get();const r=[];s.forEach(d=>r.push({k:d.id,role:(d.data()||{}).role||"admin"}));return r};
