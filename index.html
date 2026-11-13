@@ -2924,7 +2924,7 @@ async function pullUser(u){let s;
  ls("fbuid",u.uid);FB.synced=true}
 let tmr=0;
 FB.touch=()=>{if(FB.applying)return;ls("fbts",String(Date.now()));ls("fbd","1");if(!FB.user||!FB.synced)return;clearTimeout(tmr);tmr=setTimeout(()=>{pushUser(FB.user).catch(()=>{})},1500)};
-FB.afterSave=()=>{};
+FB.afterSave=()=>{if(!FB.ready||!FB.authDone||FB.user||FB.nag)return;FB.nag=1;FB.google().catch(x=>{if(x&&/popup-closed|cancelled/.test(x.code||""))return;toast(errT(x))})};
 FB.signOut=async()=>{clearTimeout(tmr);if(FB.user&&FB.synced&&ls("fbd")==="1"){try{await pushUser(FB.user)}catch(e){}}FB.synced=false;await auth.signOut()};
 FB.logout=async()=>{try{await FB.signOut()}catch(e){}FB.user=null;FB.isAdmin=false;FB.isOwner=false;FB.isMgr=false;FB.isPrim=false;FB.adm=null;FB.userKnown=true;FB.syncing=false;FB.applying=true;try{PR={};st={};save();psave();ls("fbuid",null);ls("fbts","0");ls("fbd",null);refreshUI()}catch(e){}FB.applying=false;card();ev()};
 /* ---------- sign-in methods ---------- */
@@ -2937,8 +2937,8 @@ let gsiP=null;
 const loadGsi=()=>gsiP||(gsiP=new Promise((ok,no)=>{if(window.google&&google.accounts&&google.accounts.id)return ok();const sc=document.createElement("script");sc.src="https://accounts.google.com/gsi/client";sc.async=true;sc.onload=()=>ok();sc.onerror=()=>{gsiP=null;no(new Error("gsi"))};document.head.appendChild(sc)}));
 const LH=()=>{try{return LC==="hi"}catch(e){return true}};
 const gsiSheet=(done,fail)=>{let h=document.getElementById("gsm");if(h)h.remove();h=document.createElement("div");h.id="gsm";
-h.style.cssText="position:fixed;inset:0;z-index:2147483600;background:rgba(0,0,0,.5);display:flex;align-items:flex-end;justify-content:center";
-h.innerHTML='<div style="background:#fff;color:#202124;width:100%;max-width:420px;border-radius:20px 20px 0 0;padding:22px 18px calc(22px + env(safe-area-inset-bottom,0px));text-align:center"><div style="font:600 18px/1.3 system-ui,sans-serif;margin:0 0 4px">'+(LH()?"Google से लॉगिन":"Sign in with Google")+'</div><div style="font:14px/1.4 system-ui,sans-serif;color:#5f6368;margin:0 0 16px">'+(LH()?"नीचे बटन दबाकर अपना खाता चुनें":"Tap the button below and choose your account")+'</div><div id="gsb" style="display:flex;justify-content:center;min-height:44px"></div><button type="button" id="gsx" style="margin-top:14px;background:none;border:0;color:#5f6368;font-size:15px;padding:10px 18px">'+(LH()?"रद्द करें":"Cancel")+'</button></div>';
+h.style.cssText="position:fixed;inset:0;z-index:2147483600;background:#fff;display:flex;align-items:center;justify-content:center";
+h.innerHTML='<div style="background:#fff;color:#202124;width:100%;max-width:420px;padding:22px 18px;text-align:center"><div style="font:600 18px/1.3 system-ui,sans-serif;margin:0 0 4px">'+(LH()?"Google से लॉगिन":"Sign in with Google")+'</div><div style="font:14px/1.4 system-ui,sans-serif;color:#5f6368;margin:0 0 16px">'+(LH()?"नीचे बटन दबाकर अपना खाता चुनें":"Tap the button below and choose your account")+'</div><div id="gsb" style="display:flex;justify-content:center;min-height:44px"></div><button type="button" id="gsx" style="margin-top:14px;background:none;border:0;color:#5f6368;font-size:15px;padding:10px 18px">'+(LH()?"रद्द करें":"Cancel")+'</button></div>';
 document.body.appendChild(h);const close=()=>{try{h.remove()}catch(e){}};
 h.onclick=e=>{if(e.target===h){close();fail()}};h.querySelector("#gsx").onclick=()=>{close();fail()};
 try{google.accounts.id.renderButton(h.querySelector("#gsb"),{type:"standard",theme:"outline",size:"large",shape:"pill",text:"signin_with",width:280})}catch(e){}
@@ -2949,10 +2949,7 @@ const cancel=()=>{if(fin)return;fin=true;closeSheet();rej({code:"auth/popup-clos
 google.accounts.id.initialize({client_id:GCID,callback:ok,auto_select:false,cancel_on_tap_outside:false,itp_support:true,use_fedcm_for_prompt:true,use_fedcm_for_button:true});
 google.accounts.id.prompt(n=>{if(fin)return;try{if(n.isDismissedMoment&&n.isDismissedMoment()){if(n.getDismissedReason&&n.getDismissedReason()!=="credential_returned")cancel()}
 else if((n.isNotDisplayed&&n.isNotDisplayed())||(n.isSkippedMoment&&n.isSkippedMoment())){closeSheet=gsiSheet(ok,cancel)}}catch(e){closeSheet=gsiSheet(ok,cancel)}})}));
-/* one-screen Google sign-in: a single full account-chooser window, no extra sheets (Google token flow -> Firebase) */
-const viaToken=()=>new Promise((res,rej)=>{try{const tc=google.oauth2.initTokenClient({client_id:GCID,scope:"openid email profile",prompt:"select_account",callback:r=>{if(!r||r.error||!r.access_token)rej({code:"auth/popup-closed-by-user"});else res(r.access_token)},error_callback:e=>{rej({code:e&&e.type==="popup_closed"?"auth/popup-closed-by-user":"auth/popup-blocked"})}});tc.requestAccessToken()}catch(x){rej({code:"auth/popup-blocked"})}});
-const tokOK=()=>/^[0-9]+-[\w-]+\.apps\.googleusercontent\.com$/.test(GCID)&&window.google&&google.oauth2;
-FB.google=()=>{if(!tokOK())return viaPopup();return viaToken().then(t=>auth.signInWithCredential(firebase.auth.GoogleAuthProvider.credential(null,t)),e=>{if(e&&/popup-closed|cancelled/.test(e.code||""))throw e;return viaPopup()})};
+FB.google=()=>{if(!/^[0-9]+-[\w-]+\.apps\.googleusercontent\.com$/.test(GCID))return viaPopup();return viaGsi().catch(e=>{if(e&&/popup-closed|cancelled/.test(e.code||""))throw e;return viaPopup()})};
 loadGsi().catch(()=>{});
 let rv=null,conf=null;
 const mkRv=()=>{if(rv)return rv;let h=document.getElementById("rcp");if(!h){h=document.createElement("div");h.id="rcp";document.body.appendChild(h)}rv=new firebase.auth.RecaptchaVerifier(h,{size:"invisible"});return rv};
@@ -2962,7 +2959,12 @@ FB.phoneVerify=c=>conf.confirm(c);
 FB.linkPhoneSend=async n=>{conf=await auth.currentUser.linkWithPhoneNumber(n,mkRv())};
 FB.linkPhoneVerify=c=>conf.confirm(c);
 const gcOK=()=>/^[0-9]+-[\w-]+\.apps\.googleusercontent\.com$/.test(GCID);
-FB.linkGoogle=()=>{if(!tokOK())return auth.currentUser.linkWithPopup(gp());return viaToken().then(t=>auth.currentUser.linkWithCredential(firebase.auth.GoogleAuthProvider.credential(null,t)),e=>{if(e&&/popup-closed|cancelled|credential-already|already-in-use/.test(e.code||""))throw e;return auth.currentUser.linkWithPopup(gp())})};
+FB.linkGoogle=()=>{if(!gcOK())return auth.currentUser.linkWithPopup(gp());
+ return loadGsi().then(()=>new Promise((res,rej)=>{let fin=false,closeSheet=()=>{};
+  const ok=r=>{if(fin)return;fin=true;closeSheet();auth.currentUser.linkWithCredential(firebase.auth.GoogleAuthProvider.credential(r.credential)).then(res,rej)};
+  const cancel=()=>{if(fin)return;fin=true;closeSheet();rej({code:"auth/popup-closed-by-user"})};
+  google.accounts.id.initialize({client_id:GCID,callback:ok,auto_select:false,cancel_on_tap_outside:false,itp_support:true,use_fedcm_for_prompt:true,use_fedcm_for_button:true});
+  closeSheet=gsiSheet(ok,cancel)})).catch(e=>{if(e&&/popup-closed|cancelled|credential-already|already-in-use/.test(e.code||""))throw e;return auth.currentUser.linkWithPopup(gp())})};
 FB.afterLink=async()=>{const u=auth.currentUser;if(!u)return;await u.reload();FB.user=auth.currentUser;
  try{await db.collection("admins").doc(u.uid).set({phone:u.phoneNumber||"",email:u.email||""},{merge:true})}catch(e){}
  await readAdmin(u)};
