@@ -2869,6 +2869,8 @@ const FB=window.FB={ready:false,user:null,isAdmin:false,adm:null,authDone:false,
  G:'<svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true"><path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/><path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/><path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.07H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.93l2.85-2.22.81-.62z"/><path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.07l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z"/></svg>'};
 const ev=()=>{try{document.dispatchEvent(new Event("fbauth"))}catch(e){}};
 const ls=(k,v)=>{try{if(v===undefined)return localStorage.getItem(k);if(v===null)localStorage.removeItem(k);else localStorage.setItem(k,v)}catch(e){}return null};
+const admBase=()=>{try{return JSON.parse(ls("fbbase")||"null")}catch(e){return null}};const admBaseSet=(add,edit,del,app)=>{try{ls("fbbase",JSON.stringify({a:add.map(x=>String(x.id!=null?x.id:x)),e:Object.keys(edit).map(String),d:del.map(Number),p:app||{}}))}catch(e){}};
+if(ls("fbbase")===null){try{admBaseSet(ADM.add,ADM.edit,ADM.del,ADM.app)}catch(e){}}
 Object.assign(T.hi,{fbg:"Google से लॉगिन",fbd:"प्रोफ़ाइल और गिनती क्लाउड में सुरक्षित रहेंगी",fbs:"क्लाउड में सुरक्षित",fbo:"लॉग आउट",fbq:"लॉग आउट करें? इस फ़ोन से प्रोफ़ाइल और गिनती हट जाएगी, दोबारा लॉगिन करने पर वापस आ जाएगी।",fbe:"लॉगिन नहीं हुआ",fbl:"लॉग आउट हो गया",fbt:"अपनी प्रोफ़ाइल",fbw:"कृपया रुकें…",fbu:"Google लॉगिन के लिए ऐप को इस लिंक से Chrome में खोलें",fbo2:"ऐप खोलें",fbn:"क्लाउड उपलब्ध नहीं है। इंटरनेट जाँचें और ऐप दोबारा खोलें।"});
 Object.assign(T.en,{fbg:"Sign in with Google",fbd:"Profile and counts stay safe in the cloud",fbs:"Saved in cloud",fbo:"Log out",fbq:"Log out? Profile and counts will be removed from this phone and come back when you sign in again.",fbe:"Sign-in failed",fbl:"Logged out",fbt:"Your profile",fbw:"Please wait…",fbu:"To use Google sign-in, open the app from this link in Chrome",fbo2:"Open app",fbn:"Cloud is not available. Check your internet and reopen the app."});
 const LOGOUT='<svg class="ic" width="18" height="18" viewBox="0 0 24 24"><path d="M9 4H5a1 1 0 0 0-1 1v14a1 1 0 0 0 1 1h4M16 8l4 4-4 4M20 12H9"/></svg>';
@@ -3017,10 +3019,10 @@ FB.pushAdm=async A_=>{if(!FB.user)throw new Error("auth");
  const who={uid:FB.user.uid,by:FB.user.email||FB.user.phoneNumber||""},lg=[],now=Date.now();
  const nmOf=id=>{try{const x=D.concat(HIDD,DELD).find(r=>r[0]==id);if(!x)return"";return typeof x[1]==="string"&&x[1]?x[1]:(typeof x[2]==="string"?x[2]:"")}catch(e){return""}};
  const L=(act,id,nm)=>lg.push(Object.assign({at:now,act:act,id:String(id),nm:String(nm||"").slice(0,80)},who));
- const ops=[],sync=(name,snap,items)=>{const have={},old={};snap.forEach(d=>{const x=d.data()||{};have[d.id]=x.h;old[d.id]=x.j});
+ const ops=[],bs0=admBase(),sync=(name,snap,items)=>{const bk=name==="adm_add"?"a":"e";const have={},old={};snap.forEach(d=>{const x=d.data()||{};have[d.id]=x.h;old[d.id]=x.j});
   Object.keys(items).forEach(id=>{const j=JSON.stringify(items[id]),h=hs(j),isN=!Object.prototype.hasOwnProperty.call(have,id);
    if(have[id]!==h){ops.push(b=>b.set(col(name).doc(id),{j:j,h:h}));L(name==="adm_add"&&isN?"add":"edit",id,(items[id]||{}).en)}delete have[id]});
-  Object.keys(have).forEach(id=>{ops.push(b=>b.delete(col(name).doc(id)));let nm="";try{nm=JSON.parse(old[id]).en}catch(e){}L(name==="adm_add"?"rem":"rev",id,nm)})};
+  Object.keys(have).forEach(id=>{if(!bs0||!(bs0[bk]||[]).includes(String(id)))return;ops.push(b=>b.delete(col(name).doc(id)));let nm="";try{nm=JSON.parse(old[id]).en}catch(e){}L(name==="adm_add"?"rem":"rev",id,nm)})};
  const am={};(A_.add||[]).forEach(r=>{am[String(r.id)]=r});
  sync("adm_add",sa,am);sync("adm_edit",se,A_.edit||{});
  const od=cf.exists&&Array.isArray(cf.data().del)?cf.data().del.map(Number):[],nd=(A_.del||[]).map(Number);
@@ -3029,8 +3031,11 @@ FB.pushAdm=async A_=>{if(!FB.user)throw new Error("auth");
  lg.forEach(e=>ops.push(b=>b.set(col("adminLog").doc(),e)));
  for(let i=0;i<ops.length;i+=400){const b=db.batch();ops.slice(i,i+400).forEach(f=>f(b));await b.commit()}
  const ver=Date.now();
- await col("config").doc("app").set({del:(A_.del||[]).map(Number),app:JSON.stringify(A_.app||{}),ver:ver});
- ls("fbver",String(ver))};
+ let rApp={};try{rApp=cf.exists?(JSON.parse(cf.data().app||"{}")||{}):{}}catch(e){}
+ const bD=bs0&&Array.isArray(bs0.d)?bs0.d:null,fD=Array.from(new Set(nd.concat(od.filter(x=>!nd.includes(x)&&(!bD||!bD.includes(x))))));
+ const lA=A_.app||{},bA=bs0&&bs0.p?bs0.p:{},fA={};Object.keys(Object.assign({},rApp,lA,bA)).forEach(k=>{const lv=lA[k],bv=bA[k],rv=rApp[k];const v=(lv!==bv)?lv:(rv!==undefined?rv:lv);if(v!==undefined&&v!=="")fA[k]=v});
+ await col("config").doc("app").set({del:fD,app:JSON.stringify(fA),ver:ver});
+ admBaseSet(A_.add||[],A_.edit||{},nd,A_.app||{});ls("fbver",null)};
 const admHas=()=>ADM.add.length||Object.keys(ADM.edit).length||ADM.del.length||Object.keys(ADM.app).length;
 async function onAdmin(){try{const c=await db.collection("config").doc("app").get();
  if(ls("fbad")==="1"||(!c.exists&&admHas())){await FB.pushAdm(ADM);ls("fbad",null)}}catch(e){}}
@@ -3042,7 +3047,7 @@ async function cfgPull(){
   try{rem.app=JSON.parse(x.app||"{}")||{}}catch(e){}
   sa.forEach(d=>{try{rem.add.push(JSON.parse(d.data().j))}catch(e){}});rem.add.sort((a,b)=>a.id-b.id);
   se.forEach(d=>{try{rem.edit[d.id]=JSON.parse(d.data().j)}catch(e){}});
-  if(document.documentElement.classList.contains("adm"))return;ls("fbver",ver);
+  if(document.documentElement.classList.contains("adm"))return;ls("fbver",ver);admBaseSet(rem.add,rem.edit,rem.del,rem.app);
   if(norm({add:ADM.add,edit:ADM.edit,del:ADM.del,app:ADM.app})!==norm(rem)){localStorage.setItem("adm1",JSON.stringify(rem));location.reload()}
  }catch(e){}}
 /* re-check admin changes whenever the app comes back to the foreground (at most once a minute) */
