@@ -33,5 +33,12 @@
    "type": "image/png",
    "purpose": "maskable"
   }
- ]
+ ],
+ "related_applications": [
+  {
+   "platform": "webapp",
+   "url": "https://satloks.github.io/Satlok-App/manifest-guest.json"
+  }
+ ],
+ "prefer_related_applications": false
 }
