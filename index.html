@@ -2425,7 +2425,7 @@ document.body.appendChild(el);
 const B=document.getElementById("adb"),T_=document.getElementById("adt"),X=document.getElementById("adx");
 let view="lock",tab="db",flt="all",q="",ed=null,pend="";
 const SK="adm_sec",LV=[0,0,0,30,60,300,900,3600];
-let SEC=(()=>{let o={};try{o=JSON.parse(localStorage.getItem(SK)||"{}")||{}}catch(e){}o.at=Object.assign({n:0,until:0,ts:0},o.at);o.cfg=Object.assign({auto:120,bg:1},o.cfg);o.log=Array.isArray(o.log)?o.log:[];return o})();
+let SEC=(()=>{let o={};try{o=JSON.parse(localStorage.getItem(SK)||"{}")||{}}catch(e){}o.at=Object.assign({n:0,until:0,ts:0},o.at);o.cfg=Object.assign({auto:120,bg:1},o.cfg);o.cfg.auto=0;o.cfg.bg=0;o.log=Array.isArray(o.log)?o.log:[];return o})();
 const sv=()=>{try{localStorage.setItem(SK,JSON.stringify(SEC))}catch(e){}};
 const log=(c,x)=>{SEC.log.unshift([Date.now(),c,x||""]);SEC.log.length=Math.min(SEC.log.length,60);sv()};
 const hx=b=>[...new Uint8Array(b)].map(x=>x.toString(16).padStart(2,"0")).join("");
@@ -2452,13 +2452,13 @@ const hasPf=()=>!!(SEC.pf&&SEC.pf.n&&(SEC.pf.p||SEC.pf.e));
 async function sendOtp(ch,to,code){const r=await fetch(OTP_API,{method:"POST",headers:{"Content-Type":"text/plain;charset=utf-8"},body:JSON.stringify({channel:ch,to:ch==="sms"?(String(to).length===10?"91"+to:to):to,otp:code,name:(SEC.pf||{}).n||"",app:"Satlok Social App"})});if(!r.ok)throw 1;let j={};try{j=await r.json()}catch(e){throw 1}if(!j||j.ok!==true)throw 1}
 const lastAuth=()=>{try{return+sessionStorage.getItem("admA")||0}catch(e){return 0}};
 const openSess=()=>{try{const n=String(Date.now());sessionStorage.setItem("admu",n);sessionStorage.setItem("admA",n)}catch(e){}};
-const unlocked=()=>{try{const t=+sessionStorage.getItem("admu")||0,a=SEC.cfg.auto;return t>1&&(!a||Date.now()-t<a*1000)}catch(e){return false}};
+const unlocked=()=>{try{const t=+sessionStorage.getItem("admu")||0,a=SEC.cfg.auto;return t>1}catch(e){return false}};
 let pinOk=false,resetMode=false,sOut=false;let lastTouch=0,tmr=0,pendTab="db",hAt=0;let FG={step:0,ch:"",next:0},pfFrom="db";
 const touch=()=>{const n=Date.now();if(n-lastTouch<4000)return;lastTouch=n;try{if(sessionStorage.getItem("admu"))sessionStorage.setItem("admu",String(n))}catch(e){}};
 ["pointerdown","keydown","scroll"].forEach(ev=>el.addEventListener(ev,touch,true));
 function lockNow(why){pinOk=false;resetMode=false;sOut=false;try{sessionStorage.removeItem("admu");sessionStorage.removeItem("admA")}catch(e){}if(why)log(why);if(isOpen()){ed=null;closeA();if(why&&why!=="man")toast(A("e_"+why))}}
-setInterval(()=>{if(isOpen()&&!["lock","fgt","npin"].includes(view)&&!unlocked())lockNow("auto")},5000);
-document.addEventListener("visibilitychange",()=>{if(document.hidden)hAt=Date.now();else if(isOpen()&&SEC.cfg.bg&&hAt&&Date.now()-hAt>30000&&!["lock","fgt","npin"].includes(view))lockNow("bg")});
+/* auto-lock removed: panel stays open until closed manually */
+document.addEventListener("visibilitychange",()=>{if(document.hidden)hAt=Date.now();});
 const ADL=document.getElementById("adl");ADL.innerHTML=IC.lock.replace('width="26" height="26"','width="18" height="18"');ADL.setAttribute("aria-label","Lock");ADL.onclick=()=>lockNow("man");
 const pst=(i,o)=>{const v=i.value;o.className="pst"+(v.length<4?"":" st"+strength(v));o.textContent=v.length<4?"":A(["stW","stO","stS"][strength(v)])};
 function stepUp(cb){cb()}
@@ -2615,7 +2615,7 @@ function secV(c){
  +(prov.includes("google.com")?'':'<button type="button" class="btn g" id="slg">'+gic()+A("lnkG")+'</button>')
  +(prov.includes("phone")?'':'<div id="slp" style="margin-top:10px">'+otpHtml("lp")+'</div>')
  +'<div class="aerr" id="slm" role="alert"></div></div>'
- +'<div class="grp"><h3>'+A("sess")+'</h3><label class="l" for="sau">'+A("aut")+'</label><div class="aw"><select id="sau">'+[60,120,300,600,0].map(v=>'<option value="'+v+'"'+(SEC.cfg.auto===v?" selected":"")+'>'+(v?v/60+" "+A("min"):A("off"))+'</option>').join("")+'</select></div><div class="asw"><span>'+A("bgl")+'</span><button type="button" class="atg" id="sbg" role="switch"></button></div></div>'
+ +'<div class="grp" style="display:none"><h3>'+A("sess")+'</h3><label class="l" for="sau">'+A("aut")+'</label><div class="aw"><select id="sau">'+[60,120,300,600,0].map(v=>'<option value="'+v+'"'+(SEC.cfg.auto===v?" selected":"")+'>'+(v?v/60+" "+A("min"):A("off"))+'</option>').join("")+'</select></div><div class="asw"><span>'+A("bgl")+'</span><button type="button" class="atg" id="sbg" role="switch"></button></div></div>'
  +'<div class="grp"><button type="button" class="btn dg" id="sso">'+A("soT")+'</button></div>';
  const tg=()=>{gg("sbg").classList.toggle("on",!!SEC.cfg.bg);gg("sbg").setAttribute("aria-checked",String(!!SEC.cfg.bg))};tg();
  gg("sau").onchange=()=>{SEC.cfg.auto=+gg("sau").value;sv();secV(c)};
@@ -3042,7 +3042,7 @@ async function cfgPull(){
   try{rem.app=JSON.parse(x.app||"{}")||{}}catch(e){}
   sa.forEach(d=>{try{rem.add.push(JSON.parse(d.data().j))}catch(e){}});rem.add.sort((a,b)=>a.id-b.id);
   se.forEach(d=>{try{rem.edit[d.id]=JSON.parse(d.data().j)}catch(e){}});
-  ls("fbver",ver);
+  if(document.documentElement.classList.contains("adm"))return;ls("fbver",ver);
   if(norm({add:ADM.add,edit:ADM.edit,del:ADM.del,app:ADM.app})!==norm(rem)){localStorage.setItem("adm1",JSON.stringify(rem));location.reload()}
  }catch(e){}}
 /* re-check admin changes whenever the app comes back to the foreground (at most once a minute) */
